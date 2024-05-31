@@ -1,10 +1,10 @@
-package com.poec.projet_backend.domaine.playerCharacter;
+package com.poec.projet_backend.domaine.player_character;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.note.Note;
-import com.poec.projet_backend.domaine.schedule.Schedule;
+import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -34,9 +34,9 @@ public class PlayerCharacter {
     private CharacterSheet character_sheet;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "schedule_id")
+    @JoinColumn(name = "calendar_event_id")
     @JsonIgnoreProperties("characters")
-    private Schedule schedule;
+    private CalendarEvent calendar_event;
 
     @OneToMany(mappedBy = "player_character")
     @JsonIgnoreProperties("player_character")

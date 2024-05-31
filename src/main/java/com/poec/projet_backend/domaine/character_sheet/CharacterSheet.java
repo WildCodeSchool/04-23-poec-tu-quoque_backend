@@ -1,7 +1,7 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.poec.projet_backend.domaine.playerCharacter.PlayerCharacter;
+import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

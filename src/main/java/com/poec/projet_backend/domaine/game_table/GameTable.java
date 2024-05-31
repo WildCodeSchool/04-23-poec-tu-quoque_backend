@@ -1,9 +1,10 @@
 package com.poec.projet_backend.domaine.game_table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
 import com.poec.projet_backend.domaine.drawing.Drawing;
 import com.poec.projet_backend.domaine.note.Note;
-import com.poec.projet_backend.domaine.playerCharacter.PlayerCharacter;
+import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -32,4 +33,8 @@ public class GameTable {
     @OneToMany(mappedBy = "game_table")
     @JsonIgnoreProperties("game_table")
     private List<Note> notes;
+
+    @OneToOne(mappedBy = "game_table")
+    @JsonIgnoreProperties("game_table")
+    private CalendarEvent calendarEvent;
 }
