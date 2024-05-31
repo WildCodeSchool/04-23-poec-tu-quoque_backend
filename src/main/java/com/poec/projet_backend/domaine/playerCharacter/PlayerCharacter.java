@@ -3,6 +3,7 @@ package com.poec.projet_backend.domaine.playerCharacter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.schedule.Schedule;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -28,4 +29,9 @@ public class PlayerCharacter {
     @JoinColumn(name = "character_sheet_id")
     @JsonIgnoreProperties("characters")
     private CharacterSheet character_sheet;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "schedule_id")
+    @JsonIgnoreProperties("character")
+    private Schedule schedule;
 }
