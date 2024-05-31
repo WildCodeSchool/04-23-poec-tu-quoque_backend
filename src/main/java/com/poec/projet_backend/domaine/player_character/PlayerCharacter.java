@@ -5,6 +5,7 @@ import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
+import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -41,4 +42,9 @@ public class PlayerCharacter {
     @OneToMany(mappedBy = "player_character")
     @JsonIgnoreProperties("player_character")
     private List<Note> notes;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("player_characters")
+    private UserApp user;
 }
