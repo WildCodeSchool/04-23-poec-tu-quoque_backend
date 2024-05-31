@@ -3,6 +3,7 @@ package com.poec.projet_backend.domaine.note;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
+import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -27,4 +28,9 @@ public class Note {
     @JoinColumn(name = "player_character_id")
     @JsonIgnoreProperties("notes")
     private PlayerCharacter player_character;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("notes")
+    private UserApp user;
 }
