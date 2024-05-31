@@ -3,10 +3,13 @@ package com.poec.projet_backend.domaine.playerCharacter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.schedule.Schedule;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -34,4 +37,8 @@ public class PlayerCharacter {
     @JoinColumn(name = "schedule_id")
     @JsonIgnoreProperties("characters")
     private Schedule schedule;
+
+    @OneToMany(mappedBy = "player_character")
+    @JsonIgnoreProperties("player_character")
+    private List<Note> notes;
 }
