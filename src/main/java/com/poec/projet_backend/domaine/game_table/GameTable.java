@@ -1,6 +1,8 @@
 package com.poec.projet_backend.domaine.game_table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.poec.projet_backend.domaine.drawing.Drawing;
+import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.playerCharacter.PlayerCharacter;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,4 +24,12 @@ public class GameTable {
     @OneToMany(mappedBy = "game_table")
     @JsonIgnoreProperties("game_table")
     private List<PlayerCharacter> playerCharacters;
+
+    @OneToMany(mappedBy = "game_table")
+    @JsonIgnoreProperties("game_table")
+    private List<Drawing> drawings;
+
+    @OneToMany(mappedBy = "game_table")
+    @JsonIgnoreProperties("game_table")
+    private List<Note> notes;
 }

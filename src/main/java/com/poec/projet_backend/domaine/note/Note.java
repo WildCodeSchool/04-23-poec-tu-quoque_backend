@@ -1,9 +1,8 @@
 package com.poec.projet_backend.domaine.note;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.poec.projet_backend.domaine.game_table.GameTable;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -17,4 +16,9 @@ public class Note {
     private Long id;
     private String name;
     private String text;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_table_id")
+    @JsonIgnoreProperties("notes")
+    private GameTable game_table;
 }

@@ -32,6 +32,6 @@ public class PlayerCharacter {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "schedule_id")
-    @JsonIgnoreProperties("character")
+    @JsonIgnoreProperties("characters")
     private Schedule schedule;
 }
