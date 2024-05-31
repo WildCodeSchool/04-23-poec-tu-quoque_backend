@@ -5,6 +5,7 @@ import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
 import com.poec.projet_backend.domaine.drawing.Drawing;
 import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
+import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -37,4 +38,9 @@ public class GameTable {
     @OneToOne(mappedBy = "game_table")
     @JsonIgnoreProperties("game_table")
     private CalendarEvent calendarEvent;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("game_tables")
+    private UserApp user;
 }

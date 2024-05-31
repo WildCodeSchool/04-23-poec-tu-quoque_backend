@@ -2,6 +2,7 @@ package com.poec.projet_backend.user_app;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
@@ -72,4 +73,8 @@ public class UserApp implements UserDetails {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private List<Note> notes;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private List<GameTable> game_tables;
 }
