@@ -44,7 +44,7 @@ public class ApplicationConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         // Le DaoAuthenticationProvider est une implémentation courante de AuthenticationProvider
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(); // DAO : Data Access Object
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         // On utilise notre implémentation de UserDetailsService pour récupérer les données de l'utilisateur
         authProvider.setUserDetailsService(userDetailsService());
         // On utilise notre implémentation de PasswordEncoder pour vérifier le mot de passe
