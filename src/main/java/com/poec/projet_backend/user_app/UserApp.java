@@ -30,6 +30,8 @@ public class UserApp implements UserDetails {
     private Long id;
     private String nickname;
     private String email;
+    private String avatar;
+
     @JsonIgnore
     private String password;
 

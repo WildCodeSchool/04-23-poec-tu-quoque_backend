@@ -17,7 +17,8 @@ public class CharacterSheet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "character_sheet")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "game_character_id")
     @JsonIgnoreProperties("character_sheet")
-    private List<PlayerCharacter> playerCharacters;
+    private PlayerCharacter player_character;
 }

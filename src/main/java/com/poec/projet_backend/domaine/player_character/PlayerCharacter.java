@@ -29,9 +29,8 @@ public class PlayerCharacter {
     @JsonIgnoreProperties("characters")
     private GameTable game_table;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "character_sheet_id")
-    @JsonIgnoreProperties("characters")
+    @OneToOne(mappedBy = "player_character")
+    @JsonIgnoreProperties("character")
     private CharacterSheet character_sheet;
 
     @ManyToOne(cascade = CascadeType.ALL)
