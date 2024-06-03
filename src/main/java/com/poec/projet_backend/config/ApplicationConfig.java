@@ -59,7 +59,7 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
-    //BCRYPT déjà inclus dans Spring.security
+
 
     // On en aura besoin pour l'authentification
     // L'AuthManager est le conteneur qui gère les AuthProviders

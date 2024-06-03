@@ -38,7 +38,7 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).ignoringRequestMatchers("/**").disable())
 
             // Liste des routes protégées / non protégées
-            .authorizeHttpRequests((requests) -> requests /* "/api/v1/auth/** --> les étoiles veulent dire "n'importe quoi après" */
+            .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/api/v1/auth/**").permitAll() /* n'importe qui a accès à cet url */
                 .requestMatchers("/api/v1/demo/users-only").hasAnyRole(Role.USER.name(), Role.ADMIN.name()) /* ROLE_USER */
                 .requestMatchers("/api/v1/demo/admin-only").hasAnyRole(Role.ADMIN.name()) /* ROLE_ADMIN */
