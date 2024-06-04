@@ -1,4 +1,7 @@
 package com.poec.projet_backend.domaine.player_character;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface PlayerCharacterRepository {
+@Repository
+public interface PlayerCharacterRepository extends JpaRepository<PlayerCharacter, Long> {
 }
