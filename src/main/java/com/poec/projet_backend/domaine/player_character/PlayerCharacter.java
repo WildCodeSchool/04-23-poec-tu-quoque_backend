@@ -33,10 +33,9 @@ public class PlayerCharacter {
     @JsonIgnoreProperties("character")
     private CharacterSheet character_sheet;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "calendar_event_id")
-    @JsonIgnoreProperties("characters")
-    private CalendarEvent calendar_event;
+    @OneToMany(mappedBy = "player_character")
+    @JsonIgnoreProperties("player_character")
+    private List<CalendarEvent> calendar_events;
 
     @OneToMany(mappedBy = "player_character")
     @JsonIgnoreProperties("player_character")

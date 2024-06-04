@@ -1,5 +1,4 @@
 package com.poec.projet_backend.domaine.game_table;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
 import com.poec.projet_backend.domaine.drawing.Drawing;
@@ -39,8 +38,11 @@ public class GameTable {
     @JsonIgnoreProperties("game_table")
     private CalendarEvent calendarEvent;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("game_tables")
     private UserApp user;
+
+    public GameTable(String name, String avatar) {
+    }
 }
