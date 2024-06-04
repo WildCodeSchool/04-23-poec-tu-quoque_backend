@@ -1,5 +1,4 @@
 package com.poec.projet_backend.domaine.abstract_package;
-
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;

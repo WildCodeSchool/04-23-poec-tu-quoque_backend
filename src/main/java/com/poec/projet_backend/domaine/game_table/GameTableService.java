@@ -1,7 +1,5 @@
 package com.poec.projet_backend.domaine.game_table;
-
 import com.poec.projet_backend.domaine.abstract_package.AbstractService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

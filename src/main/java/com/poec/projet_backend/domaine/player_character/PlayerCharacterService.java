@@ -1,11 +1,9 @@
 package com.poec.projet_backend.domaine.player_character;
-
 import com.poec.projet_backend.domaine.abstract_package.AbstractService;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
-
-
     public PlayerCharacterService(PlayerCharacterRepository repository) {
         super(repository);
     }
