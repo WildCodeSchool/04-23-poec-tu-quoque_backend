@@ -31,7 +31,6 @@ public class UserAppController extends AbstractController<UserApp> {
     public ResponseEntity<UserApp> getUserByEmail(@PathVariable String email, HttpServletRequest request) throws AccessDeniedException {
         String username  = SecurityContextHolder.getContext().getAuthentication().getName();
         String roles  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-
         if (username.equals(email) || roles.equals("[ROLE_ADMIN]")) {
             return ResponseEntity.ok(userAppRepository.findByEmail(email)
                     .orElseThrow(() -> new RuntimeException("email " + email +" not found"))
@@ -41,16 +40,12 @@ public class UserAppController extends AbstractController<UserApp> {
         }
     }
 
-
     @GetMapping("/all")
-//    public List<UserApp> getAll(HttpServletRequest request) throws AccessDeniedException {
         public ResponseEntity<List<UserApp>> getAll(HttpServletRequest request) throws AccessDeniedException {
         String roles  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         System.out.println(roles);
         if(roles.equals("[ROLE_ADMIN]")) {
-            //return userAppRepository.findAll();
             List<UserApp> entityList = userAppRepository.findAll();
-
             return new ResponseEntity<>(entityList, HttpStatus.OK);
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
