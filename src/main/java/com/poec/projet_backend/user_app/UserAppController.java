@@ -49,6 +49,11 @@ public class UserAppController {
     }
 
 
-
+    @GetMapping("/personal")
+    public ResponseEntity<UserApp> getCurrentUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return ResponseEntity.ok(userAppRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found")));
+    }
 
 }
