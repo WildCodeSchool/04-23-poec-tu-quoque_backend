@@ -1,4 +1,7 @@
 package com.poec.projet_backend.domaine.game_table;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface GameTableRepository {
+@Repository
+public interface GameTableRepository extends JpaRepository<GameTable, Long> {
 }

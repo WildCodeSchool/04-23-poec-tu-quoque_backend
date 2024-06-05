@@ -25,9 +25,10 @@ public class CalendarEvent {
     private boolean allDay;
     private String color;
 
-    @OneToMany(mappedBy = "calendar_event")
-    @JsonIgnoreProperties("calendar_event")
-    private List<PlayerCharacter> playerCharacters;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "player_character_id")
+    @JsonIgnoreProperties("calendar_events")
+    private PlayerCharacter player_character;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "game_table_id")

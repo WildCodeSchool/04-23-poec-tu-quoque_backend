@@ -1,4 +1,7 @@
 package com.poec.projet_backend.domaine.note;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface NoteRepository {
+@Repository
+public interface NoteRepository extends JpaRepository<Note, Long> {
 }
