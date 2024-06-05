@@ -39,8 +39,13 @@ public class GameTable {
     @JsonIgnoreProperties("game_table")
     private CalendarEvent calendarEvent;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @ManyToMany
+    @JoinTable(
+            name = "user_table_invitations",
+            joinColumns = @JoinColumn(name = "game_table_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     @JsonIgnoreProperties("game_tables")
-    private UserApp user;
+    private List<UserApp> users;
+
 }

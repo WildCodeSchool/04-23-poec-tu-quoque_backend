@@ -31,9 +31,6 @@ public class UserAppController {
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
         }
-
-
-
     }
 
     @GetMapping("/all")
@@ -44,16 +41,15 @@ public class UserAppController {
             return userAppRepository.findAll();
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
-
         }
     }
 
-
     @GetMapping("/personal")
-    public ResponseEntity<UserApp> getCurrentUser() {
+    public ResponseEntity<UserAppDTO> getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return ResponseEntity.ok(userAppRepository.findByEmail(username)
-                .orElseThrow(() -> new RuntimeException("User not found")));
-    }
+        UserApp userApp = userAppRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
+        return ResponseEntity.ok(UserAppDTO.mapFromEntity(userApp));
+    }
 }
