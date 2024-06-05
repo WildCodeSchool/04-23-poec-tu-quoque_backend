@@ -1,0 +1,16 @@
+package com.poec.projet_backend.domaine.character_sheet.character_weapons;
+
+import com.poec.projet_backend.domaine.abstract_package.AbstractService;
+
+public class CharacterWeaponsService extends AbstractService<CharacterWeapons> {
+    public CharacterWeaponsService(CharacterWeaponsRepository repository) {
+        super(repository);
+    }
+
+
+    @Override
+    public CharacterWeapons update(Long id, CharacterWeapons entity) {
+        return null;
+    }
+}
+
