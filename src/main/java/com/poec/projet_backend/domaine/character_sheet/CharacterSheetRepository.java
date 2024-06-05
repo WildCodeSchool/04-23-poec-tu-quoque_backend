@@ -1,4 +1,6 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
-public interface CharacterSheetRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CharacterSheetRepository extends JpaRepository<CharacterSheet, Long> {
 }
