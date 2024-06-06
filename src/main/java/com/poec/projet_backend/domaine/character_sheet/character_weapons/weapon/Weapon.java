@@ -19,4 +19,8 @@ public class Weapon {
     @ManyToOne
     @JoinColumn(name = "character_weapons_id")
     private CharacterWeapons characterWeapons;
+
+    public Weapon(String name) {
+        this.name = name;
+    }
 }

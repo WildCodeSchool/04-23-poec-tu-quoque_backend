@@ -6,25 +6,27 @@ import com.poec.projet_backend.domaine.character_sheet.character_weapons.Charact
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+
 @Entity
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class CharacterSheet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
-    private PlayerCharacter player_character;
+    @JoinColumn(name = "character_id")
+    private PlayerCharacter playerCharacter;
 
     @OneToMany(mappedBy = "sheet")
     private List<SkillInfoEnteredByPlayer> skillInfoEnteredByPlayerList;
@@ -48,7 +50,6 @@ public class CharacterSheet {
     private String hairColor;
     private String heightModifierRolled;
     private String level;
-    private String playerName;
     private String skinColor;
     private String weightModifierRolled;
 }
