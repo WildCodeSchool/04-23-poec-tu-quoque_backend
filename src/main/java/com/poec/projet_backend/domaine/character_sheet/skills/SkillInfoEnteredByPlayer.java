@@ -19,8 +19,19 @@ public class SkillInfoEnteredByPlayer {
     private int rankSkill;
     private String complement;
 
-
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sheet_id")
     private CharacterSheet sheet;
+
+    public SkillInfoEnteredByPlayer(int skillId, int rankSkill) {
+        this.skillId = skillId;
+        this.rankSkill = rankSkill;
+    }
+
+    public SkillInfoEnteredByPlayer(int skillId, int rankSkill, String complement) {
+        this.skillId = skillId;
+        this.rankSkill = rankSkill;
+        this.complement = complement;
+    }
+
 }
