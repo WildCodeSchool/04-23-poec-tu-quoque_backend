@@ -28,6 +28,7 @@ public class SheetFixture {
     }
 
     private CharacterSheet generateSheet(PlayerCharacter player) {
+
         CharacterSheet sheet = CharacterSheet.builder()
                 .age("15")
                 .god("Bob le bricolo")
@@ -49,6 +50,12 @@ public class SheetFixture {
                 .build();
 
         System.err.println(sheet.getSkillInfoEnteredByPlayerList().toString());
+
+        List<SkillInfoEnteredByPlayer> skillList = sheet.getSkillInfoEnteredByPlayerList();
+        for (SkillInfoEnteredByPlayer skill : skillList) {
+            skill.setSheet(sheet);
+        }
+
         return sheet;
     }
 

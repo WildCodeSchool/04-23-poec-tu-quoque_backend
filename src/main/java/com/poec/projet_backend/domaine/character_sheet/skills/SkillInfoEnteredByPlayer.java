@@ -19,7 +19,7 @@ public class SkillInfoEnteredByPlayer {
     private int rankSkill;
     private String complement;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "sheet_id")
     private CharacterSheet sheet;
 
