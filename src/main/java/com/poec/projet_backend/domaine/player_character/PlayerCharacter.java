@@ -41,7 +41,7 @@ public class PlayerCharacter {
     @JsonIgnoreProperties("player_character")
     private List<Note> notes;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("player_characters")
     private UserApp user;
