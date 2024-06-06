@@ -26,7 +26,7 @@ public class GameTable {
     @JsonIgnoreProperties("game_table")
     private List<PlayerCharacter> playerCharacters;
 
-    @OneToMany(mappedBy = "game_table")
+    @OneToMany(mappedBy = "game_table", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("game_table")
     private List<Drawing> drawings;
 
@@ -43,6 +43,13 @@ public class GameTable {
     @JsonIgnoreProperties("game_tables")
     private UserApp user;
 
-    public GameTable(String name, String avatar) {
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "user_table_invitations",
+            joinColumns = @JoinColumn(name = "game_table_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    @JsonIgnoreProperties("game_tables_invitation")
+    private List<UserApp> users_invitation;
+
 }
