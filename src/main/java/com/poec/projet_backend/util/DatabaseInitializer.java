@@ -1,5 +1,6 @@
 package com.poec.projet_backend.util;
 
+import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.user_app.Role;
 import com.poec.projet_backend.user_app.UserApp;
 import com.poec.projet_backend.user_app.UserAppRepository;
@@ -14,6 +15,8 @@ public class DatabaseInitializer implements CommandLineRunner {
 
     private final UserAppRepository userAppRepository;
     private final PasswordEncoder passwordEncoder;
+    private final SheetFixture sheetFixture;
+    private final CharacterFixtures characterFixtures;
 
     @Override
     public void run(String... args) throws Exception {
@@ -21,6 +24,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             this.createAdmin();
             this.createUsers();
         }
+        createSheet();
     }
 
     private void createAdmin() {
@@ -43,5 +47,10 @@ public class DatabaseInitializer implements CommandLineRunner {
                 .build();
 
         this.userAppRepository.save(user1);
+    }
+
+    private void createSheet() {
+        PlayerCharacter player =  characterFixtures.load();
+        sheetFixture.load(player);
     }
 }

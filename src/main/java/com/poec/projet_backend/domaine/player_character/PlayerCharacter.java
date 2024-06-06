@@ -7,14 +7,15 @@ import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
 import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
 @Entity
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class PlayerCharacter {
 
     @Id
@@ -29,9 +30,10 @@ public class PlayerCharacter {
     @JsonIgnoreProperties("characters")
     private GameTable game_table;
 
-    @OneToOne(mappedBy = "player_character")
+    @OneToOne(mappedBy = "playerCharacter" ,cascade = CascadeType.MERGE)
+    @PrimaryKeyJoinColumn
     @JsonIgnoreProperties("character")
-    private CharacterSheet character_sheet;
+    private CharacterSheet characterSheet;
 
     @OneToMany(mappedBy = "player_character")
     @JsonIgnoreProperties("player_character")
@@ -41,7 +43,7 @@ public class PlayerCharacter {
     @JsonIgnoreProperties("player_character")
     private List<Note> notes;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("player_characters")
     private UserApp user;
