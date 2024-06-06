@@ -69,7 +69,7 @@ public class UserApp implements UserDetails {
         return true;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<PlayerCharacter> player_characters;
 

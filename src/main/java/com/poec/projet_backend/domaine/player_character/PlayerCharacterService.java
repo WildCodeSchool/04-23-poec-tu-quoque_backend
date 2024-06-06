@@ -14,7 +14,11 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
         foundCharacter.setName(entity.getName());
         foundCharacter.setAvatar(entity.getAvatar());
         foundCharacter.setAccepted(entity.isAccepted());
-        foundCharacter.setGame_table(entity.getGame_table());
+        if(entity.getGame_table() != null) {
+            foundCharacter.setGame_table(entity.getGame_table());
+        } else {
+            foundCharacter.setGame_table(null);
+        }
         return repository.save(foundCharacter);
     }
 }

@@ -17,7 +17,7 @@ public class Drawing {
     private String name;
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("drawings")
     private GameTable game_table;
