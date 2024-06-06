@@ -54,13 +54,12 @@ public class UserAppController extends AbstractController<UserApp> {
     }
 
 
-
     @GetMapping("/personal")
-    public ResponseEntity<UserApp> getCurrentUser() {
+    public ResponseEntity<UserAppDTO> getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return ResponseEntity.ok(userAppRepository.findByEmail(username)
-                .orElseThrow(() -> new RuntimeException("User not found")));
+        UserApp userApp = userAppRepository.findByEmail(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return ResponseEntity.ok(UserAppDTO.mapFromEntity(userApp));
     }
-
-
 }

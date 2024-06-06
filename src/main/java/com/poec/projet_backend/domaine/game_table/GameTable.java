@@ -1,4 +1,5 @@
 package com.poec.projet_backend.domaine.game_table;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.calendar_event.CalendarEvent;
 import com.poec.projet_backend.domaine.drawing.Drawing;
@@ -43,6 +44,13 @@ public class GameTable {
     @JsonIgnoreProperties("game_tables")
     private UserApp user;
 
-    public GameTable(String name, String avatar) {
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "user_table_invitations",
+            joinColumns = @JoinColumn(name = "game_table_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    @JsonIgnoreProperties("game_tables_invitation")
+    private List<UserApp> users_invitation;
+
 }

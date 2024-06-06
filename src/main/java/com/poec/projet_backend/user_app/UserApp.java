@@ -80,4 +80,13 @@ public class UserApp implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<GameTable> game_tables;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_table_invitations",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_table_id")
+    )
+    @JsonIgnoreProperties("users_invitation")
+    private List<GameTable> game_tables_invitation;
 }
