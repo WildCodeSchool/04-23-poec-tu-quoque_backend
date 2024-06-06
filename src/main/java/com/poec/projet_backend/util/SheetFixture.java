@@ -56,6 +56,14 @@ public class SheetFixture {
             skill.setSheet(sheet);
         }
 
+        CharacterWeapons weapons = sheet.getWeapons();
+        List<Weapon> weaponList = weapons.getWeapons();
+        for (Weapon weapon: weaponList) {
+            weapon.setCharacterWeapons(weapons);
+        }
+
+
+
         return sheet;
     }
 
