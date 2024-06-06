@@ -38,9 +38,6 @@ public class UserAppController extends AbstractController<UserApp> {
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
         }
-
-
-
     }
 
     @GetMapping("/all")

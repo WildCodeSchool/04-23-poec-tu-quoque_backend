@@ -39,13 +39,18 @@ public class GameTable {
     @JsonIgnoreProperties("game_table")
     private CalendarEvent calendarEvent;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties("game_tables")
+    private UserApp user;
+
     @ManyToMany
     @JoinTable(
             name = "user_table_invitations",
             joinColumns = @JoinColumn(name = "game_table_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    @JsonIgnoreProperties("game_tables")
-    private List<UserApp> users;
+    @JsonIgnoreProperties("game_tables_invitation")
+    private List<UserApp> users_invitation;
 
 }
