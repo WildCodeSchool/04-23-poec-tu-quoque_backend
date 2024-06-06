@@ -15,7 +15,7 @@ public record PlayerCharacterFullDTO(
             playerCharacter.getAvatar(),
             playerCharacter.isAccepted(),
             playerCharacter.getGame_table() != null ? playerCharacter.getGame_table().getId() : null,
-            playerCharacter.getCharacter_sheet() != null ? playerCharacter.getCharacter_sheet().getId() : null
+            playerCharacter.getCharacterSheet() != null ? playerCharacter.getCharacterSheet().getId() : null
 
         );
     }
