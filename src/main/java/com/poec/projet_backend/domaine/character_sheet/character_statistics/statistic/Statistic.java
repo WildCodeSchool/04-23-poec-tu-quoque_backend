@@ -19,4 +19,10 @@ public class Statistic {
     private int originalValue;
     private int tempModifier;
     private String abbr;
+
+    public Statistic(int originalValue, int tempModifier, String abbr) {
+        this.originalValue = originalValue;
+        this.tempModifier = tempModifier;
+        this.abbr = abbr;
+    }
 }
