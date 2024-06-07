@@ -18,15 +18,15 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final SheetFixture sheetFixture;
     private final CharacterFixtures characterFixtures;
     private final UserFixtures userFixtures;
+    private final TableFixtures tableFixtures;
 
     @Override
     public void run(String... args) throws Exception {
         if(this.userAppRepository.findByEmail("admin@admin.com").isEmpty()) {
             this.createAdmin();
             this.createUsers();
+            tableFixtures.load();
         }
-        createSheet();
-        userFixtures.load();
     }
 
     private void createAdmin() {
@@ -50,6 +50,8 @@ public class DatabaseInitializer implements CommandLineRunner {
                 .build();
 
         this.userAppRepository.save(user1);
+        userFixtures.load();
+        createSheet();
     }
 
     private void createSheet() {
