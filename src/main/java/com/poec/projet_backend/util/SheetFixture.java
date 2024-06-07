@@ -62,8 +62,6 @@ public class SheetFixture {
             weapon.setCharacterWeapons(weapons);
         }
 
-
-
         return sheet;
     }
 

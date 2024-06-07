@@ -6,14 +6,15 @@ import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class GameTable {
 
     @Id
@@ -52,4 +53,14 @@ public class GameTable {
     @JsonIgnoreProperties("game_tables_invitation")
     private List<UserApp> users_invitation;
 
+    GameTable(String avatar, String name, UserApp user) {
+        this.avatar = avatar;
+        this.name = name;
+        this.user = user;
+    }
+
+    GameTable(String name, UserApp user) {
+        this.name = name;
+        this.user = user;
+    }
 }
