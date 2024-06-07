@@ -47,4 +47,10 @@ public class DrawingController extends AbstractController<Drawing> {
         return new ResponseEntity<>(drawingDTO, HttpStatus.OK);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

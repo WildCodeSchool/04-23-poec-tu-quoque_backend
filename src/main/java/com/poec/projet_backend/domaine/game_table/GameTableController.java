@@ -2,6 +2,7 @@ package com.poec.projet_backend.domaine.game_table;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.user_app.UserApp;
 import com.poec.projet_backend.user_app.UserAppService;
+import com.poec.projet_backend.util.Patcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class GameTableController extends AbstractController<GameTable> {
 
     @Autowired
     private UserAppService userAppService;
+
+    @Autowired
+    Patcher patcher;
 
     @GetMapping("/get/all")
     public ResponseEntity<List<GameTableDTO>> getAll() {
@@ -51,6 +55,25 @@ public class GameTableController extends AbstractController<GameTable> {
         GameTable tableCreated = service.add(gameTable);
         GameTableDTO dto = GameTableDTO.mapFromEntity(tableCreated);
         return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping("/patch/{id}")
+    public ResponseEntity<GameTableFullDTO> patchTable(@RequestBody GameTable incompleteTable, @PathVariable("id") Long id) {
+        GameTable foundTable = service.getById(id);
+
+        try {
+            Patcher.elementPatcher(foundTable, incompleteTable);
+            service.add(foundTable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(GameTableFullDTO.mapFromEntity(foundTable), HttpStatus.OK);
     }
 
 }
