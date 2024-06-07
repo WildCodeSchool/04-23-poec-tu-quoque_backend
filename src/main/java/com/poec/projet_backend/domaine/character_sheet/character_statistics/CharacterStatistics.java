@@ -33,4 +33,19 @@ public class CharacterStatistics {
     @JoinColumn(name = "charisma")
     private Statistic CHA;
 
+    public CharacterStatistics(
+            Statistic FOR,
+            Statistic DEX,
+            Statistic CON,
+            Statistic INT,
+            Statistic SAG,
+            Statistic CHA
+    ) {
+        this.FOR = FOR;
+        this.DEX = DEX;
+        this.CON = CON;
+        this.INT = INT;
+        this.SAG = SAG;
+        this.CHA = CHA;
+    }
 }

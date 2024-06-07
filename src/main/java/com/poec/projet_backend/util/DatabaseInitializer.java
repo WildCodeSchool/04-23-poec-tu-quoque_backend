@@ -17,6 +17,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final PasswordEncoder passwordEncoder;
     private final SheetFixture sheetFixture;
     private final CharacterFixtures characterFixtures;
+    private final UserFixtures userFixtures;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,6 +26,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             this.createUsers();
         }
         createSheet();
+        userFixtures.load();
     }
 
     private void createAdmin() {

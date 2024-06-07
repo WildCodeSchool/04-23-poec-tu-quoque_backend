@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,5 +20,10 @@ public class CharacterWeapons {
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "characterWeapons")
-    private Weapon[] weapons = new Weapon[5];
+    private List<Weapon> weapons = new ArrayList<Weapon>();
+
+    public CharacterWeapons addWeapon(Weapon weapon) {
+        weapons.add(weapon);
+        return this;
+    }
 }
