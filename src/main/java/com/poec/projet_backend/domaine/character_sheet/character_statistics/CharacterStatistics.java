@@ -2,12 +2,13 @@ package com.poec.projet_backend.domaine.character_sheet.character_statistics;
 
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.statistic.Statistic;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CharacterStatistics {
 
     @Id
@@ -32,6 +33,17 @@ public class CharacterStatistics {
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "charisma")
     private Statistic CHA;
+
+    static public CharacterStatistics createBlank() {
+        return CharacterStatistics.builder()
+                .FOR(new Statistic("FOR"))
+                .DEX(new Statistic("DEX"))
+                .CON(new Statistic("CON"))
+                .INT(new Statistic("INT"))
+                .SAG(new Statistic("SAG"))
+                .CHA(new Statistic("CHA"))
+                .build();
+    }
 
     public CharacterStatistics(
             Statistic FOR,

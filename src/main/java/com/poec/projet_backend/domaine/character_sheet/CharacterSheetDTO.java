@@ -2,7 +2,6 @@ package com.poec.projet_backend.domaine.character_sheet;
 
 public record CharacterSheetDTO(
         Long id,
-        String playerName,
         String age,
         String alignment,
         String characterClass,
@@ -20,7 +19,6 @@ public record CharacterSheetDTO(
     public static CharacterSheetDTO mapFromEntity(CharacterSheet sheet) {
         return new CharacterSheetDTO(
                 sheet.getId(),
-                sheet.getPlayerCharacter().getName(),
                 sheet.getAge(),
                 sheet.getAlignment(),
                 sheet.getCharacterClass(),
