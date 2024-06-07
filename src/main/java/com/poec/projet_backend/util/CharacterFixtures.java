@@ -11,20 +11,26 @@ import org.springframework.stereotype.Service;
 public class CharacterFixtures {
 
     @Autowired
-    private PlayerCharacterService service;
+    private PlayerCharacterService characterService;
     @Autowired
     private UserAppService userService;
 
     public PlayerCharacter load() {
-        if(service.getAll().isEmpty()) {
+        if(characterService.getAll().isEmpty()) {
             UserApp user = userService.getById(1L);
             PlayerCharacter player = PlayerCharacter.builder()
                     .name("Nico")
                     .avatar("Bob")
                     .user(user)
                     .build();
-            return this.service.add(player);
+            return this.characterService.add(player);
         }
         return null;
     }
+
+    private void generate() {
+        
+    }
+
+
 }
