@@ -30,11 +30,6 @@ public class CalendarEvent {
     @JsonIgnoreProperties("calendar_events")
     private PlayerCharacter player_character;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "game_table_id")
-//    @JsonIgnoreProperties("calendar_event")
-//    private GameTable game_table;
-
     @ManyToOne
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("calendar_events")

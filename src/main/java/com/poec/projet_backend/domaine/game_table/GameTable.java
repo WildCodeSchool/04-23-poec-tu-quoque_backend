@@ -34,10 +34,6 @@ public class GameTable {
     @JsonIgnoreProperties("game_table")
     private List<Note> notes;
 
-//    @OneToOne(mappedBy = "game_table")
-//    @JsonIgnoreProperties("game_table")
-//    private CalendarEvent calendarEvent;
-
     @OneToMany(mappedBy = "game_table", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("game_table")
     private List<CalendarEvent> calendarEvents;
