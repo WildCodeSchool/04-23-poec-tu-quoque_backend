@@ -8,7 +8,6 @@ import com.poec.projet_backend.domaine.character_sheet.character_weapons.Charact
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.Weapon;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +20,14 @@ public class SheetFixture {
     @Autowired
     private CharacterSheetService sheetService;
 
-    public void load(PlayerCharacter player) {
+    public CharacterSheet load() {
         if(sheetService.getAll().isEmpty()) {
-            this.sheetService.add(generateSheet(player));
+            return this.sheetService.add(generateSheet());
         }
+        return null;
     }
 
-    private CharacterSheet generateSheet(PlayerCharacter player) {
+    private CharacterSheet generateSheet() {
 
         CharacterSheet sheet = CharacterSheet.builder()
                 .age("15")
@@ -42,7 +42,6 @@ public class SheetFixture {
                 .alignment("Chaotique Bon")
                 .skinColor("blanche")
                 .stats(generateCharacterStatistics())
-                .playerCharacter(player)
                 .skillInfoEnteredByPlayerList(generateSkills())
                 .weapons(generateWeapons())
                 .heightModifierRolled("15")

@@ -24,7 +24,7 @@ public class CharacterSheet {
     private Long id;
 
 
-    @OneToOne
+    @OneToOne(mappedBy = "characterSheet")
     @JoinColumn(name = "character_id")
     private PlayerCharacter playerCharacter;
 
@@ -52,4 +52,16 @@ public class CharacterSheet {
     private String level;
     private String skinColor;
     private String weightModifierRolled;
+
+    static public CharacterSheet createBlank() {
+        return CharacterSheet.builder()
+                .stats(CharacterStatistics.createBlank())
+                .weapons(new CharacterWeapons())
+                .build();
+    }
+
+    CharacterSheet(CharacterStatistics stats, CharacterWeapons weapons) {
+        this.stats = stats;
+        this.weapons = weapons;
+    }
 }

@@ -1,5 +1,7 @@
 package com.poec.projet_backend.util;
 
+import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
+import com.poec.projet_backend.domaine.character_sheet.CharacterSheetService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.user_app.Role;
 import com.poec.projet_backend.user_app.UserApp;
@@ -8,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -19,6 +23,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final CharacterFixtures characterFixtures;
     private final UserFixtures userFixtures;
     private final TableFixtures tableFixtures;
+    private final CharacterSheetService sheetService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -26,6 +31,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             this.createAdmin();
             this.createUsers();
             tableFixtures.load();
+            characterFixtures.load();
         }
     }
 
@@ -54,7 +60,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     }
 
     private void createSheet() {
-        PlayerCharacter player =  characterFixtures.load();
-        sheetFixture.load(player);
+        PlayerCharacter player =  characterFixtures.loadNico();
+
     }
 }

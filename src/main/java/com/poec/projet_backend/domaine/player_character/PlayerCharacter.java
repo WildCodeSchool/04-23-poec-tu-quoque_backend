@@ -25,14 +25,13 @@ public class PlayerCharacter {
     private String avatar;
     private boolean accepted;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("characters")
     private GameTable game_table;
 
-    @OneToOne(mappedBy = "playerCharacter" ,cascade = CascadeType.MERGE)
-    @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties("character")
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "sheet_id")
     private CharacterSheet characterSheet;
 
     @OneToMany(mappedBy = "player_character")
@@ -47,4 +46,5 @@ public class PlayerCharacter {
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("player_characters")
     private UserApp user;
+
 }
