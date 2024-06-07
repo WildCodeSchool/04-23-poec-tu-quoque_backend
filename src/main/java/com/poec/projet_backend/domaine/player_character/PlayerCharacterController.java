@@ -5,6 +5,7 @@ import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
 import com.poec.projet_backend.user_app.UserApp;
 import com.poec.projet_backend.user_app.UserAppService;
+import com.poec.projet_backend.util.Patcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/characters")
 @RequiredArgsConstructor
-public class PlayerCharacterController extends AbstractController<PlayerCharacter> {
+public class PlayerCharacterController {
 
     @Autowired
     private PlayerCharacterService service;
@@ -58,5 +59,24 @@ public class PlayerCharacterController extends AbstractController<PlayerCharacte
         PlayerCharacter updatedCharacter = service.update(id, playerCharacter);
         PlayerCharacterFullDTO characterFullDTO = PlayerCharacterFullDTO.mapFromEntity(updatedCharacter);
         return new ResponseEntity<>(characterFullDTO, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete-item/{id}")
+    public ResponseEntity<Void> deleteCharacter(@PathVariable("id") Long id) {
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PatchMapping("/patch/{id}")
+    public ResponseEntity<PlayerCharacterFullDTO> patchCharacter(@RequestBody PlayerCharacter incompleteCharacter, @PathVariable Long id) {
+        PlayerCharacter foundCharacter = service.getById(id);
+
+        try {
+            Patcher.elementPatcher(foundCharacter, incompleteCharacter);
+            service.add(foundCharacter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(PlayerCharacterFullDTO.mapFromEntity(foundCharacter), HttpStatus.OK);
     }
 }

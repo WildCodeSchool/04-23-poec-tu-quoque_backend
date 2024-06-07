@@ -19,10 +19,4 @@ public class AbstractController<T> {
         T createdEntity = service.add(entity);
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
     }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        service.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }
