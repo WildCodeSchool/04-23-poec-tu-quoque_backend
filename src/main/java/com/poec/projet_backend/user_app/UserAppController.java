@@ -3,6 +3,7 @@ package com.poec.projet_backend.user_app;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
+import com.poec.projet_backend.util.Patcher;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +42,13 @@ public class UserAppController extends AbstractController<UserApp> {
     }
 
     @GetMapping("/all")
-        public ResponseEntity<List<UserApp>> getAll(HttpServletRequest request) throws AccessDeniedException {
+        public ResponseEntity<List<UserAppDTO>> getAll(HttpServletRequest request) throws AccessDeniedException {
         String roles  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
         System.out.println(roles);
         if(roles.equals("[ROLE_ADMIN]")) {
             List<UserApp> entityList = userAppRepository.findAll();
-            return new ResponseEntity<>(entityList, HttpStatus.OK);
+            List<UserAppDTO> userAppDTOList = entityList.stream().map(UserAppDTO::mapFromEntity).toList();
+            return new ResponseEntity<>(userAppDTOList, HttpStatus.OK);
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
 
@@ -61,5 +63,18 @@ public class UserAppController extends AbstractController<UserApp> {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return ResponseEntity.ok(UserAppDTO.mapFromEntity(userApp));
+    }
+
+    @PatchMapping("/patch/{id}")
+    public ResponseEntity<UserAppDTO> patchUser(@RequestBody UserApp incompleteUser, @PathVariable Long id) {
+        UserApp foundUser = service.getById(id);
+
+        try {
+            Patcher.elementPatcher(foundUser, incompleteUser);
+            service.add(foundUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(UserAppDTO.mapFromEntity(foundUser), HttpStatus.OK);
     }
 }
