@@ -25,4 +25,8 @@ public class Statistic {
         this.tempModifier = tempModifier;
         this.abbr = abbr;
     }
+
+    public Statistic(String abbr) {
+        this.abbr = abbr;
+    }
 }

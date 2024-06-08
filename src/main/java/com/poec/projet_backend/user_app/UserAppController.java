@@ -55,7 +55,6 @@ public class UserAppController extends AbstractController<UserApp> {
         }
     }
 
-
     @GetMapping("/personal")
     public ResponseEntity<UserAppDTO> getCurrentUser() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
