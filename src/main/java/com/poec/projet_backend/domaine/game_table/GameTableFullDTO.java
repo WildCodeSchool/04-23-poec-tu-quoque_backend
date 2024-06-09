@@ -6,6 +6,7 @@ import com.poec.projet_backend.domaine.drawing.DrawingDTO;
 import com.poec.projet_backend.domaine.note.NoteDTO;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterDTO;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterFullDTO;
+import com.poec.projet_backend.user_app.UserApp;
 
 import java.util.List;
 
@@ -17,7 +18,8 @@ public record GameTableFullDTO(
     List<PlayerCharacterDTO> playerCharacterDTOList,
     List<DrawingDTO> drawingList,
     List<CalendarEventDTO> eventList,
-    List<NoteDTO> noteList
+    List<NoteDTO> noteList,
+    List<Long> invitationsSent
 ) {
     public static GameTableFullDTO mapFromEntity(GameTable gameTable) {
         return new GameTableFullDTO(
@@ -28,7 +30,8 @@ public record GameTableFullDTO(
                 gameTable.getPlayerCharacters().stream().map(PlayerCharacterDTO::mapFromEntity).toList(),
                 gameTable.getDrawings().stream().map(DrawingDTO::mapFromEntity).toList(),
                 gameTable.getCalendarEvents().stream().map(CalendarEventDTO::mapFromEntity).toList(),
-                gameTable.getNotes().stream().map(NoteDTO::mapFromEntity).toList()
+                gameTable.getNotes().stream().map(NoteDTO::mapFromEntity).toList(),
+                gameTable.getUsers_invitation().stream().map(UserApp::getId).toList()
         );
     }
 }

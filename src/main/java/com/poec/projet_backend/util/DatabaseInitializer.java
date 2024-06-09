@@ -24,6 +24,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final UserFixtures userFixtures;
     private final TableFixtures tableFixtures;
     private final CharacterSheetService sheetService;
+    private final InvitationFixtures invitationFixtures;
 
     @Override
     public void run(String... args) throws Exception {
@@ -32,6 +33,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             this.createUsers();
             tableFixtures.load();
             characterFixtures.load();
+            invitationFixtures.load();
         }
     }
 
