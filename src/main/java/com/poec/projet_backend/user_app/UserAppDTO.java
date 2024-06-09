@@ -1,8 +1,11 @@
 package com.poec.projet_backend.user_app;
 
 import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.game_table.GameTableDTO;
 import com.poec.projet_backend.domaine.note.Note;
+import com.poec.projet_backend.domaine.note.NoteDTO;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
+import com.poec.projet_backend.domaine.player_character.PlayerCharacterDTO;
 
 import java.util.List;
 
@@ -12,31 +15,32 @@ public record UserAppDTO(
         String nickname,
         String email,
         String avatar,
-        List<Long> playerCharacterIds,
-        List<Long> notesIds,
-        List<Long> gameTableIds
+        List<PlayerCharacterDTO> playerCharacterList,
+        List<NoteDTO> playerNoteList,
+        List<GameTableDTO> playerGameTableList
 
 ) {
     public static UserAppDTO mapFromEntity(UserApp userApp){
-        List<Long> playerCharacterIds = userApp.getPlayer_characters().stream()
-                .map(PlayerCharacter::getId)
+        List<PlayerCharacterDTO> playerCharacterList = userApp.getPlayer_characters().stream()
+                .map(PlayerCharacterDTO::mapFromEntity)
                 .toList();
 
-        List<Long> notesIds = userApp.getNotes().stream()
-                .map(Note::getId)
+        List<NoteDTO> playerNoteList = userApp.getNotes().stream()
+                .map(NoteDTO::mapFromEntity)
                 .toList();
 
-        List<Long> gameTableIds = userApp.getGame_tables().stream()
-                .map(GameTable::getId)
+        List<GameTableDTO> playerGameTableList = userApp.getGame_tables().stream()
+                .map(GameTableDTO::mapFromEntity)
                 .toList();
+
         return new UserAppDTO(
                 userApp.getId(),
                 userApp.getNickname(),
                 userApp.getEmail(),
                 userApp.getAvatar(),
-                playerCharacterIds,
-                notesIds,
-                gameTableIds
+                playerCharacterList,
+                playerNoteList,
+                playerGameTableList
         );
     }
 }
