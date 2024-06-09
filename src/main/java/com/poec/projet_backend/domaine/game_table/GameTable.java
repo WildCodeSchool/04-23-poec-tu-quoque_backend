@@ -8,6 +8,7 @@ import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -44,14 +45,16 @@ public class GameTable {
     @JsonIgnoreProperties("game_tables")
     private UserApp user;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_table_invitations",
             joinColumns = @JoinColumn(name = "game_table_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     @JsonIgnoreProperties("game_tables_invitation")
-    private List<UserApp> users_invitation;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JsonIgnoreProperties()
+    private List<UserApp> users_invitation = new ArrayList<>();
 
     GameTable(String avatar, String name, UserApp user) {
         this.avatar = avatar;
@@ -62,5 +65,9 @@ public class GameTable {
     GameTable(String name, UserApp user) {
         this.name = name;
         this.user = user;
+    }
+
+    public void addInvitation(UserApp user) {
+        this.users_invitation.add(user);
     }
 }
