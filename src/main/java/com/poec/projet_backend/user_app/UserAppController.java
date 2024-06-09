@@ -6,6 +6,7 @@ import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.util.Patcher;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,5 +77,12 @@ public class UserAppController extends AbstractController<UserApp> {
             e.printStackTrace();
         }
         return new ResponseEntity<>(UserAppDTO.mapFromEntity(foundUser), HttpStatus.OK);
+    }
+
+    @GetMapping("/getinvitations/{userId}")
+    public ResponseEntity<UserAppDTOWithInvitations> getUserWithInvitations(@PathVariable Long userId) {
+        UserApp user = service.getById(userId);
+
+        return new ResponseEntity<>(UserAppDTOWithInvitations.mapFromEntity(user), HttpStatus.OK);
     }
 }

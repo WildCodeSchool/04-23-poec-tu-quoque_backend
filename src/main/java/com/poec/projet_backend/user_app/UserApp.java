@@ -81,12 +81,13 @@ public class UserApp implements UserDetails {
     @JsonIgnoreProperties("user")
     private List<GameTable> game_tables;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_table_invitations",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_table_id")
-    )
-    @JsonIgnoreProperties("users_invitation")
-    private List<GameTable> game_tables_invitation;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users_invitation")
+//    @JoinTable(
+//            name = "user_table_invitations",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "game_table_id")
+//    )
+//    @ManyToMany(mappedBy = "users_invitation")
+//    @JsonIgnoreProperties("users_invitation")
+    private List<GameTable> game_tables_invitation = new ArrayList<>();
 }
