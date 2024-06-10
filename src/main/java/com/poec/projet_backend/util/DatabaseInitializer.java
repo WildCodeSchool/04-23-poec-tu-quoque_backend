@@ -25,6 +25,7 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final TableFixtures tableFixtures;
     private final CharacterSheetService sheetService;
     private final InvitationFixtures invitationFixtures;
+    private final EventFixtures eventFixtures;
 
     @Override
     public void run(String... args) throws Exception {
@@ -34,6 +35,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             tableFixtures.load();
             characterFixtures.load();
             invitationFixtures.load();
+            eventFixtures.load();
         }
     }
 
