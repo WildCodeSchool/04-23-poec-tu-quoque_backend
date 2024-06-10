@@ -77,49 +77,4 @@ public class EventFixtures {
         eventService.add(event4);
 
     }
-
-    /*
-      "schedules": [
-    {
-      "id": "1",
-      "tablesId": 1
-    }
-  ],
-  "events": [
-    {
-      "id": 1,
-      "tableId": 1,
-      "title": "dispo Gimli",
-      "description": "anniversaire Gimli",
-      "start": "2024-05-24 00:00:00",
-      "allDay": true
-    },
-    {
-      "id": 2,
-      "tableId": 1,
-      "title": "dispo Freyr",
-      "start": "2024-05-27 00:00:00",
-      "allDay": true
-    },
-    {
-      "id": 3,
-      "tableId": 1,
-      "title": "dispoMJ",
-      "start": "2024-05-28 09:00:00",
-      "end": "2024-05-30 09:00:00",
-      "allDay": true,
-      "color": "#c29b0f"
-    },
-    {
-      "id": 4,
-      "tableId": 4,
-      "title": "table MJ dispo",
-      "start": "2024-06-26 09:00:00",
-      "end": "2024-06-29 09:00:00",
-      "description": "Disponible 24/24 pendant ces 3 jours, maison déjà louée",
-      "allDay": true,
-      "color": "#c29b0f"
-    }
-  ],
-     */
 }
