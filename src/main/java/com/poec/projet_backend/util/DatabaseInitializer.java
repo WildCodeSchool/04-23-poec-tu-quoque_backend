@@ -2,6 +2,7 @@ package com.poec.projet_backend.util;
 
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheetService;
+import com.poec.projet_backend.domaine.note.NoteService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.user_app.Role;
 import com.poec.projet_backend.user_app.UserApp;
@@ -26,6 +27,8 @@ public class DatabaseInitializer implements CommandLineRunner {
     private final CharacterSheetService sheetService;
     private final InvitationFixtures invitationFixtures;
     private final EventFixtures eventFixtures;
+    private final NotesFixtures notesFixtures;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -36,6 +39,7 @@ public class DatabaseInitializer implements CommandLineRunner {
             characterFixtures.load();
             invitationFixtures.load();
             eventFixtures.load();
+            notesFixtures.load();
         }
     }
 
