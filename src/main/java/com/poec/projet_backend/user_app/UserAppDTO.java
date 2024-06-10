@@ -17,7 +17,8 @@ public record UserAppDTO(
         String avatar,
         List<PlayerCharacterDTO> playerCharacterList,
         List<NoteDTO> playerNoteList,
-        List<GameTableDTO> playerGameTableList
+        List<GameTableDTO> playerGameTableList,
+        List<GameTableDTO> gameTableInvitationList
 
 ) {
     public static UserAppDTO mapFromEntity(UserApp userApp){
@@ -33,6 +34,10 @@ public record UserAppDTO(
                 .map(GameTableDTO::mapFromEntity)
                 .toList();
 
+        List<GameTableDTO> gameTableInvitationList = userApp.getGame_tables_invitation().stream()
+                .map(GameTableDTO::mapFromEntity)
+                .toList();
+
         return new UserAppDTO(
                 userApp.getId(),
                 userApp.getNickname(),
@@ -40,7 +45,8 @@ public record UserAppDTO(
                 userApp.getAvatar(),
                 playerCharacterList,
                 playerNoteList,
-                playerGameTableList
+                playerGameTableList,
+                gameTableInvitationList
         );
     }
 }

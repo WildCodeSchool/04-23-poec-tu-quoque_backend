@@ -39,6 +39,13 @@ public class NoteController extends AbstractController<Note> {
         return new ResponseEntity<>(noteDTOList, HttpStatus.OK);
     }
 
+    @GetMapping("/get/note/{noteId}")
+    public ResponseEntity<NoteDTO> getById(@PathVariable("noteId") Long noteId) {
+        Note foundNote = service.getById(noteId);
+        NoteDTO noteDTO = NoteDTO.mapFromEntity(foundNote);
+        return new ResponseEntity<>(noteDTO, HttpStatus.OK);
+    }
+
     @PostMapping("/add/user/{userId}")
     ResponseEntity<NoteDTO> addToUser(@RequestBody Note note, @PathVariable Long userId) {
         UserApp foundUser = userAppService.getById(userId);
