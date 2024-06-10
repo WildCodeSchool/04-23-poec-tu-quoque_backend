@@ -71,7 +71,6 @@ public class CharacterFixtures {
                 .user(userService.getById(3L))
                 .game_table(tableService.getById(2L))
                 .accepted(true)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character2);
         characterList.add(character2);
@@ -81,7 +80,6 @@ public class CharacterFixtures {
                 .avatar("/assets/images/user-profile-images/character-elrond.jpg")
                 .user(userService.getById(3L))
                 .accepted(false)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character3);
         characterList.add(character3);
@@ -91,7 +89,6 @@ public class CharacterFixtures {
                 .avatar("/assets/images/user-profile-images/user3.png")
                 .user(userService.getById(4L))
                 .accepted(true)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character4);
         characterList.add(character4);
@@ -102,7 +99,6 @@ public class CharacterFixtures {
                 .user(userService.getById(5L))
                 .game_table(tableService.getById(1L))
                 .accepted(true)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character5);
         characterList.add(character5);
@@ -113,7 +109,6 @@ public class CharacterFixtures {
                 .user(userService.getById(6L))
                 .game_table(tableService.getById(1L))
                 .accepted(false)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character6);
         characterList.add(character6);
@@ -123,7 +118,6 @@ public class CharacterFixtures {
                 .avatar("")
                 .user(userService.getById(3L))
                 .accepted(false)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character7);
         characterList.add(character7);

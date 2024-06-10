@@ -5,12 +5,13 @@ import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.user_app.UserApp;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Note {
 
     @Id
@@ -19,17 +20,17 @@ public class Note {
     private String name;
     private String text;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("notes")
     private GameTable game_table;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "player_character_id")
     @JsonIgnoreProperties("notes")
     private PlayerCharacter player_character;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("notes")
     private UserApp user;
