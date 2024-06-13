@@ -1,6 +1,7 @@
 package com.poec.projet_backend.domaine.note;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.game_table.GameTableDTO;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
