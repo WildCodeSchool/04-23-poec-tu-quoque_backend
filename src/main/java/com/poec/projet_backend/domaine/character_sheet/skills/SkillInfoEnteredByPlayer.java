@@ -1,6 +1,7 @@
 package com.poec.projet_backend.domaine.character_sheet.skills;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class SkillInfoEnteredByPlayer {
 
     @ManyToOne
     @JoinColumn(name = "sheet_id")
+    @JsonIgnoreProperties("skillInfoEnteredByPlayerList")
     private CharacterSheet sheet;
 
     public SkillInfoEnteredByPlayer(int skillId, int rankSkill) {

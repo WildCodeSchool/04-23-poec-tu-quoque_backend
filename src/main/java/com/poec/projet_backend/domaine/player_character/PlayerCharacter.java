@@ -32,6 +32,7 @@ public class PlayerCharacter {
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "sheet_id")
+    @JsonIgnoreProperties("playerCharacter")
     private CharacterSheet characterSheet;
 
     @OneToMany(mappedBy = "player_character")
