@@ -6,6 +6,7 @@ import com.poec.projet_backend.domaine.character_sheet.character_statistics.Char
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.statistic.Statistic;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeapons;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.Weapon;
+import com.poec.projet_backend.domaine.character_sheet.purse.Purse;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,7 @@ public class SheetFixture {
                 .skinColor("blanche")
                 .stats(generateCharacterStatistics())
                 .skillInfoEnteredByPlayerList(generateSkills())
+                .purse(generatePurse())
                 .weapons(generateWeapons())
                 .heightModifierRolled("15")
                 .weightModifierRolled("15")
@@ -88,5 +90,9 @@ public class SheetFixture {
         skills.add(acrobaties);
         skills.add(craft);
         return skills;
+    }
+
+    private Purse generatePurse() {
+        return new Purse(15, 0, 0, true);
     }
 }
