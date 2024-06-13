@@ -48,8 +48,6 @@ public class SheetFixture {
                 .weightModifierRolled("15")
                 .build();
 
-        System.err.println(sheet.getSkillInfoEnteredByPlayerList().toString());
-
         List<SkillInfoEnteredByPlayer> skillList = sheet.getSkillInfoEnteredByPlayerList();
         for (SkillInfoEnteredByPlayer skill : skillList) {
             skill.setSheet(sheet);
