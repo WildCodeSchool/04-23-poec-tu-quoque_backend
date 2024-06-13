@@ -3,6 +3,7 @@ package com.poec.projet_backend.domaine.character_sheet;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatistics;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeapons;
+import com.poec.projet_backend.domaine.character_sheet.purse.Purse;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
@@ -38,6 +39,10 @@ public class CharacterSheet {
     private CharacterStatistics stats;
 
     @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "purse")
+    private Purse purse;
+
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "weapons")
     private CharacterWeapons weapons;
 
@@ -59,6 +64,7 @@ public class CharacterSheet {
         return CharacterSheet.builder()
                 .stats(CharacterStatistics.createBlank())
                 .weapons(new CharacterWeapons())
+                .purse(new Purse())
                 .build();
     }
 

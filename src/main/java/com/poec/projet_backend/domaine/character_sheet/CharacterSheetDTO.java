@@ -4,6 +4,8 @@ import com.poec.projet_backend.domaine.character_sheet.character_statistics.Char
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatistics;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeapons;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeaponsDTO;
+import com.poec.projet_backend.domaine.character_sheet.purse.Purse;
+import com.poec.projet_backend.domaine.character_sheet.purse.PurseDTO;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayerDTO;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
@@ -29,7 +31,8 @@ public record CharacterSheetDTO(
         String playerName,
         CharacterWeaponsDTO weapons,
         List<SkillInfoEnteredByPlayerDTO> skills,
-        CharacterStatisticDTO stats
+        CharacterStatisticDTO stats,
+        PurseDTO purse
 ) {
     public static CharacterSheetDTO mapFromEntity(CharacterSheet sheet) {
         return new CharacterSheetDTO(
@@ -50,7 +53,8 @@ public record CharacterSheetDTO(
                 sheet.getPlayerCharacter().getUser().getNickname(),
                 CharacterWeaponsDTO.mapFromEntity(sheet.getWeapons()),
                 sheet.getSkillInfoEnteredByPlayerList().stream().map(SkillInfoEnteredByPlayerDTO::mapFromEntity).toList(),
-                CharacterStatisticDTO.mapFromEntity(sheet.getStats())
+                CharacterStatisticDTO.mapFromEntity(sheet.getStats()),
+                PurseDTO.mapFromEntity(sheet.getPurse())
         );
     }
 }
