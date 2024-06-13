@@ -5,6 +5,7 @@ import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
 import com.poec.projet_backend.user_app.UserApp;
+import com.poec.projet_backend.user_app.UserAppDTO;
 import com.poec.projet_backend.user_app.UserAppService;
 import com.poec.projet_backend.util.Patcher;
 import lombok.RequiredArgsConstructor;
@@ -56,6 +57,14 @@ public class PlayerCharacterController {
         List<PlayerCharacter> playerCharacterAcceptedList = tableFound.getPlayerCharacters().stream().filter(PlayerCharacter::isAccepted).toList();
         List<PlayerCharacterDTO> playerCharacterAcceptedDTOList = playerCharacterAcceptedList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
         return new ResponseEntity<>(playerCharacterAcceptedDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/character-on-hold/tableId={TableId}")
+    public ResponseEntity<List<PlayerCharacterDTO>> getOnHoldCharacterList(@PathVariable("tableId") Long tableId) {
+        GameTable tableFound = gameTableService.getById(tableId);
+        List<PlayerCharacter> playerCharacterOnHoldList = tableFound.getPlayerCharacters().stream().filter(playerCharacter -> !playerCharacter.isAccepted()).toList();
+        List<PlayerCharacterDTO> playerCharacterOnHoldDTOList = playerCharacterOnHoldList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(playerCharacterOnHoldDTOList, HttpStatus.OK);
     }
 
     @GetMapping("/get/userId={userId}")
