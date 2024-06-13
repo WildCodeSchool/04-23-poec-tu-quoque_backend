@@ -13,7 +13,7 @@ import java.util.List;
 public record GameTableFullDTO(
     Long id,
     String name,
-    String Avatar,
+    String avatar,
     Long userId,
     List<PlayerCharacterDTO> playerCharacterDTOList,
     List<DrawingDTO> drawingList,
