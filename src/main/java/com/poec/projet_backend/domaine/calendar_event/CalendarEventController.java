@@ -2,6 +2,8 @@ package com.poec.projet_backend.domaine.calendar_event;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
+import com.poec.projet_backend.domaine.note.Note;
+import com.poec.projet_backend.domaine.note.NoteDTO;
 import com.poec.projet_backend.util.Patcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,14 @@ public class CalendarEventController extends AbstractController<CalendarEvent> {
     @GetMapping("/get/all")
     public ResponseEntity<List<CalendarEventDTO>> getAll() {
         List<CalendarEvent> calendarEventList = service.getAll();
+        List<CalendarEventDTO> calendarEventDTOList = calendarEventList.stream().map(CalendarEventDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(calendarEventDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/tableId={tableId}")
+    public ResponseEntity<List<CalendarEventDTO>> getByTable(@PathVariable("tableId") Long tableId) {
+        GameTable foundTable = gameTableService.getById(tableId);
+        List<CalendarEvent> calendarEventList = foundTable.getCalendarEvents();
         List<CalendarEventDTO> calendarEventDTOList = calendarEventList.stream().map(CalendarEventDTO::mapFromEntity).toList();
         return new ResponseEntity<>(calendarEventDTOList, HttpStatus.OK);
     }

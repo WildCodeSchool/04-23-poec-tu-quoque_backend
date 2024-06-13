@@ -1,6 +1,7 @@
 package com.poec.projet_backend.domaine.player_character;
-
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
+import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
 import com.poec.projet_backend.user_app.UserApp;
@@ -25,6 +26,9 @@ public class PlayerCharacterController {
     @Autowired
     private UserAppService userAppService;
 
+    @Autowired
+    private GameTableService gameTableService;
+
     @GetMapping("/get/all")
     public ResponseEntity<List<PlayerCharacterDTO>> getAll() {
         List<PlayerCharacter> characterList = service.getAll();
@@ -38,6 +42,22 @@ public class PlayerCharacterController {
         return new ResponseEntity<>(characterFullDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/get/character-available/userId={userId}")
+    public ResponseEntity<List<PlayerCharacterDTO>> getAvailableCharacterList(@PathVariable("userId") Long userId) {
+        UserApp userFound = userAppService.getById(userId);
+        List<PlayerCharacter> availableCharacterList = userFound.getPlayer_characters().stream().filter(character -> character.getGame_table() == null).toList();
+        List<PlayerCharacterDTO> availableCharacterListDTO = availableCharacterList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(availableCharacterListDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/character-accepted/tableId={tableId}")
+    public ResponseEntity<List<PlayerCharacterDTO>> getAcceptedCharacterList(@PathVariable("tableId") Long tableId) {
+        GameTable tableFound = gameTableService.getById(tableId);
+        List<PlayerCharacter> playerCharacterAcceptedList = tableFound.getPlayerCharacters().stream().filter(PlayerCharacter::isAccepted).toList();
+        List<PlayerCharacterDTO> playerCharacterAcceptedDTOList = playerCharacterAcceptedList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(playerCharacterAcceptedDTOList, HttpStatus.OK);
+    }
+
     @GetMapping("/get/userId={userId}")
     public ResponseEntity<List<PlayerCharacterDTO>> getByUser(@PathVariable("userId") Long userId) {
         UserApp userFound = userAppService.getById(userId);
@@ -45,6 +65,7 @@ public class PlayerCharacterController {
         List<PlayerCharacterDTO> playerCharacterDTOList = userCharacterList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
         return new ResponseEntity<>(playerCharacterDTOList, HttpStatus.OK);
     }
+
     @PostMapping("/add/{userId}")
     public ResponseEntity<PlayerCharacterDTO> add(@RequestBody PlayerCharacter playerCharacter, @PathVariable("userId") Long userId) {
         UserApp foundUser = userAppService.getById(userId);
