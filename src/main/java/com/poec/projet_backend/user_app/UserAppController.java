@@ -45,7 +45,6 @@ public class UserAppController extends AbstractController<UserApp> {
     @GetMapping("/all")
         public ResponseEntity<List<UserAppDTO>> getAll(HttpServletRequest request) throws AccessDeniedException {
         String roles  = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        System.out.println(roles);
         if(roles.equals("[ROLE_ADMIN]")) {
             List<UserApp> entityList = userAppRepository.findAll();
             List<UserAppDTO> userAppDTOList = entityList.stream().map(UserAppDTO::mapFromEntity).toList();

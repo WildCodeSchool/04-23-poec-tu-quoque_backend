@@ -58,12 +58,9 @@ public class CharacterFixtures {
                 .user(userService.getById(3L))
                 .game_table(tableService.getById(4L))
                 .accepted(false)
-                //"scheduleId": 1
                 .build();
         characterService.setStartingSheet(character1);
         characterList.add(character1);
-
-        System.err.println(character1.getCharacterSheet().getCharacterName());
 
         PlayerCharacter character2 = PlayerCharacter.builder()
                 .name("Gandalf")
