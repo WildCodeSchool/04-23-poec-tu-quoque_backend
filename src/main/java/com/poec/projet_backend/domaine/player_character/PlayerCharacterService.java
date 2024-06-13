@@ -5,6 +5,11 @@ import com.poec.projet_backend.domaine.character_sheet.CharacterSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 @Service
 public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
 
@@ -34,5 +39,14 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
         sheetService.add(sheet);
         entity.setCharacterSheet(sheet);
         return entity;
+    }
+
+    public String getUserNameByCharacterSheet(Long sheetId) {
+        List<PlayerCharacter> characterList = getAll();
+        Optional<PlayerCharacter> characterMatch =  characterList.stream()
+                .filter(character -> Objects.equals(character.getCharacterSheet().getId(), sheetId))
+                .findFirst();
+
+        return characterMatch.orElseThrow().getUser().getNickname();
     }
 }

@@ -26,9 +26,11 @@ public class CharacterSheet {
 
     @OneToOne(mappedBy = "characterSheet")
     @JoinColumn(name = "character_id")
+    @JsonIgnoreProperties("characterSheet")
     private PlayerCharacter playerCharacter;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sheet")
+    @JsonIgnoreProperties("sheet")
     private List<SkillInfoEnteredByPlayer> skillInfoEnteredByPlayerList;
 
     @OneToOne (cascade = CascadeType.ALL)

@@ -1,5 +1,7 @@
 package com.poec.projet_backend.domaine.character_sheet.character_weapons;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.Weapon;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,6 +22,7 @@ public class CharacterWeapons {
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "characterWeapons")
+    @JsonIgnoreProperties("characterWeapons")
     private List<Weapon> weapons = new ArrayList<Weapon>();
 
     public CharacterWeapons addWeapon(Weapon weapon) {

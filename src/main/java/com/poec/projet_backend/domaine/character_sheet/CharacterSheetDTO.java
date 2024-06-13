@@ -1,5 +1,16 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
+import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatisticDTO;
+import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatistics;
+import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeapons;
+import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeaponsDTO;
+import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
+import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayerDTO;
+import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
 public record CharacterSheetDTO(
         Long id,
         String age,
@@ -14,7 +25,11 @@ public record CharacterSheetDTO(
         String heightModifierRolled,
         String level,
         String skinColor,
-        String weightModifierRolled
+        String weightModifierRolled,
+        String playerName,
+        CharacterWeaponsDTO weapons,
+        List<SkillInfoEnteredByPlayerDTO> skills,
+        CharacterStatisticDTO stats
 ) {
     public static CharacterSheetDTO mapFromEntity(CharacterSheet sheet) {
         return new CharacterSheetDTO(
@@ -31,8 +46,11 @@ public record CharacterSheetDTO(
                 sheet.getHeightModifierRolled(),
                 sheet.getLevel(),
                 sheet.getSkinColor(),
-                sheet.getWeightModifierRolled()
+                sheet.getWeightModifierRolled(),
+                sheet.getPlayerCharacter().getUser().getNickname(),
+                CharacterWeaponsDTO.mapFromEntity(sheet.getWeapons()),
+                sheet.getSkillInfoEnteredByPlayerList().stream().map(SkillInfoEnteredByPlayerDTO::mapFromEntity).toList(),
+                CharacterStatisticDTO.mapFromEntity(sheet.getStats())
         );
-
     }
 }
