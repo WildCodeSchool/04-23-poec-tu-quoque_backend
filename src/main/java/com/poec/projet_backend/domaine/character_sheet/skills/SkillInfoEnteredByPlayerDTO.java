@@ -14,4 +14,13 @@ public record SkillInfoEnteredByPlayerDTO(
                 skill.getComplement()
         );
     }
+
+    public static SkillInfoEnteredByPlayer mapFromDtoToEntity(SkillInfoEnteredByPlayerDTO skillDTO) {
+        return SkillInfoEnteredByPlayer.builder()
+                .rankSkill(skillDTO.rankSkill())
+                .complement(skillDTO.complement())
+                .skillId(skillDTO.skillId())
+                .id(skillDTO.id())
+                .build();
+    }
 }

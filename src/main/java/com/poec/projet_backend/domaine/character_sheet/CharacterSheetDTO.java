@@ -1,20 +1,16 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatisticDTO;
-import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatistics;
-import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeapons;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeaponsDTO;
-import com.poec.projet_backend.domaine.character_sheet.purse.Purse;
 import com.poec.projet_backend.domaine.character_sheet.purse.PurseDTO;
-import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayerDTO;
-import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 
 import java.util.List;
 
 public record CharacterSheetDTO(
         Long id,
+        Long statisticsId,
         String age,
         String alignment,
         String characterClass,
@@ -37,6 +33,7 @@ public record CharacterSheetDTO(
     public static CharacterSheetDTO mapFromEntity(CharacterSheet sheet) {
         return new CharacterSheetDTO(
                 sheet.getId(),
+                sheet.getStats().getId(),
                 sheet.getAge(),
                 sheet.getAlignment(),
                 sheet.getCharacterClass(),
@@ -56,5 +53,30 @@ public record CharacterSheetDTO(
                 CharacterStatisticDTO.mapFromEntity(sheet.getStats()),
                 PurseDTO.mapFromEntity(sheet.getPurse())
         );
+    }
+
+    public static CharacterSheet mapFromDtoToEntityWithoutCharacterPlayer(CharacterSheetDTO sheetDTO, PlayerCharacter character) {
+        return CharacterSheet.builder()
+                .id(sheetDTO.id())
+                .age(sheetDTO.age())
+                .alignment(sheetDTO.alignment())
+                .characterClass(sheetDTO.characterClass())
+                .characterName(sheetDTO.characterName())
+                .characterRace(sheetDTO.characterRace())
+                .eyesColor(sheetDTO.eyesColor())
+                .gender(sheetDTO.gender())
+                .god(sheetDTO.god())
+                .hairColor(sheetDTO.hairColor())
+                .heightModifierRolled(sheetDTO.heightModifierRolled())
+                .level(sheetDTO.level())
+                .skinColor(sheetDTO.skinColor())
+                .weightModifierRolled(sheetDTO.weightModifierRolled())
+                .playerCharacter(character)
+                // weapons
+                .skillInfoEnteredByPlayerList(sheetDTO.skills().stream().map(SkillInfoEnteredByPlayerDTO::mapFromDtoToEntity).toList())
+                .stats(CharacterStatisticDTO.mapFromDtoToEntity(sheetDTO.stats, sheetDTO.statisticsId()))
+
+                //purse
+                .build();
     }
 }

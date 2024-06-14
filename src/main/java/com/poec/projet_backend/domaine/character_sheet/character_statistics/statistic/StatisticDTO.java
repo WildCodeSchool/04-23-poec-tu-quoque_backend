@@ -6,12 +6,22 @@ public record StatisticDTO(
         int tempModifier,
         String abbr
         ) {
+
     public static StatisticDTO mapFromEntity(Statistic statistic) {
         return new StatisticDTO(
                 statistic.getId(),
                 statistic.getOriginalValue(),
                 statistic.getTempModifier(),
                 statistic.getAbbr()
+        );
+    }
+
+    public static Statistic mapFromDtoToEntity(StatisticDTO statisticDTO) {
+        return new Statistic(
+                statisticDTO.id(),
+                statisticDTO.originalValue(),
+                statisticDTO.tempModifier(),
+                statisticDTO.abbr()
         );
     }
 }

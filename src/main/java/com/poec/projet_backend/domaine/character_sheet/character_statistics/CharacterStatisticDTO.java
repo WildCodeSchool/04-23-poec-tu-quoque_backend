@@ -1,6 +1,5 @@
 package com.poec.projet_backend.domaine.character_sheet.character_statistics;
 
-import com.poec.projet_backend.domaine.character_sheet.character_statistics.statistic.Statistic;
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.statistic.StatisticDTO;
 
 public record CharacterStatisticDTO(
@@ -21,6 +20,20 @@ public record CharacterStatisticDTO(
                 StatisticDTO.mapFromEntity(stats.getINT()),
                 StatisticDTO.mapFromEntity(stats.getSAG()),
                 StatisticDTO.mapFromEntity(stats.getCHA())
+        );
+    }
+
+    public static CharacterStatistics mapFromDtoToEntity(CharacterStatisticDTO statsDTO, Long statsId) {
+        return new CharacterStatistics(
+                statsId,
+                StatisticDTO.mapFromDtoToEntity(statsDTO.FOR()),
+                StatisticDTO.mapFromDtoToEntity(statsDTO.DEX()),
+                StatisticDTO.mapFromDtoToEntity(statsDTO.CON()),
+                StatisticDTO.mapFromDtoToEntity(statsDTO.INT()),
+                StatisticDTO.mapFromDtoToEntity(statsDTO.SAG()),
+                StatisticDTO.mapFromDtoToEntity(statsDTO.CHA())
+
+
         );
     }
 }

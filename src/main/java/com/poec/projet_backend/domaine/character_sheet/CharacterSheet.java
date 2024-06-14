@@ -24,7 +24,6 @@ public class CharacterSheet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @OneToOne(mappedBy = "characterSheet")
     @JoinColumn(name = "character_id")
     @JsonIgnoreProperties("characterSheet")
@@ -72,4 +71,8 @@ public class CharacterSheet {
         this.stats = stats;
         this.weapons = weapons;
     }
+
+
+
+
 }
