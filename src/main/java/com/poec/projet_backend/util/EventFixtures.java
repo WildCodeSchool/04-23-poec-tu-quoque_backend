@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Service
@@ -31,7 +29,7 @@ public class EventFixtures {
         Date dateEnd = formatter.parse("2024-06-29 09:00");
 
         CalendarEvent event = CalendarEvent.builder()
-                .game_table(tableService.getById(4L))
+                .gameTable(tableService.getById(4L))
                 .title("table MJ dispo")
                 .start(dateStart)
                 .end(dateEnd)
@@ -45,7 +43,7 @@ public class EventFixtures {
         Date dateStart2 = formatter.parse("2024-06-28 00:00");
 
         CalendarEvent event2 = CalendarEvent.builder()
-                .game_table(tableService.getById(1L))
+                .gameTable(tableService.getById(1L))
                 .title("dispo Gimli")
                 .start(dateStart2)
                 .description("anniversaire Gimli")
@@ -57,7 +55,7 @@ public class EventFixtures {
         Date dateStart3 = formatter.parse("2024-06-28 00:00");
 
         CalendarEvent event3 = CalendarEvent.builder()
-                .game_table(tableService.getById(1L))
+                .gameTable(tableService.getById(1L))
                 .title("dispo Freyr")
                 .start(dateStart3)
                 .allDay(true)
@@ -68,7 +66,7 @@ public class EventFixtures {
         Date dateStart4 = formatter.parse("2024-06-28 00:00");
 
         CalendarEvent event4 = CalendarEvent.builder()
-                .game_table(tableService.getById(1L))
+                .gameTable(tableService.getById(1L))
                 .title("dispo MJ")
                 .start(dateStart4)
                 .allDay(true)
