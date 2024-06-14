@@ -51,7 +51,6 @@ public class UserAppController extends AbstractController<UserApp> {
             return new ResponseEntity<>(userAppDTOList, HttpStatus.OK);
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
-
         }
     }
 
@@ -62,6 +61,14 @@ public class UserAppController extends AbstractController<UserApp> {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return ResponseEntity.ok(UserAppDTO.mapFromEntity(userApp));
+    }
+
+    @GetMapping("/get/user-invited/tableId={tableId}")
+    public ResponseEntity<List<UserAppShortDTO>> getUserInvitedList(@PathVariable("tableId") Long tableId) {
+        GameTable tableFound = tableService.getById(tableId);
+        List<UserApp> tableUserInvitedList = tableFound.getUsers_invitation();
+        List<UserAppShortDTO> tableUserInvitatedDTOList = tableUserInvitedList.stream().map(UserAppShortDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(tableUserInvitatedDTOList, HttpStatus.OK);
     }
 
     @PatchMapping("/patch/{id}")
