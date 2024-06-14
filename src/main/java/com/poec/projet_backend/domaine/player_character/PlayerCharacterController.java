@@ -59,11 +59,12 @@ public class PlayerCharacterController {
         return new ResponseEntity<>(playerCharacterAcceptedDTOList, HttpStatus.OK);
     }
 
-    @GetMapping("/get/character-on-hold/tableId={TableId}")
-    public ResponseEntity<List<PlayerCharacterDTO>> getOnHoldCharacterList(@PathVariable("tableId") Long tableId) {
+    @GetMapping("/get/character-on-hold/tableId={tableId}")
+    public ResponseEntity<List<PlayerCharacterShortAvatarDTO>> getOnHoldCharacterList(@PathVariable("tableId") Long tableId) {
+        System.out.println(tableId);
         GameTable tableFound = gameTableService.getById(tableId);
         List<PlayerCharacter> playerCharacterOnHoldList = tableFound.getPlayerCharacters().stream().filter(playerCharacter -> !playerCharacter.isAccepted()).toList();
-        List<PlayerCharacterDTO> playerCharacterOnHoldDTOList = playerCharacterOnHoldList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
+        List<PlayerCharacterShortAvatarDTO> playerCharacterOnHoldDTOList = playerCharacterOnHoldList.stream().map(PlayerCharacterShortAvatarDTO::mapFromEntity).toList();
         return new ResponseEntity<>(playerCharacterOnHoldDTOList, HttpStatus.OK);
     }
 
