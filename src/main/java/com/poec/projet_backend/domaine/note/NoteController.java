@@ -1,7 +1,6 @@
 package com.poec.projet_backend.domaine.note;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
-import com.poec.projet_backend.domaine.game_table.GameTableDTO;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
@@ -59,7 +58,7 @@ public class NoteController extends AbstractController<Note> {
     @PostMapping("/add/character/{characterId}")
     ResponseEntity<NoteDTO> addToCharacter(@RequestBody Note note, @PathVariable Long characterId) {
         PlayerCharacter foundCharacter = playerCharacterService.getById(characterId);
-        note.setPlayer_character(foundCharacter);
+        note.setPlayerCharacter(foundCharacter);
         Note noteCreated = service.add(note);
         NoteDTO noteDTO = NoteDTO.mapFromEntity(noteCreated);
         return new ResponseEntity<>(noteDTO, HttpStatus.OK);
@@ -68,7 +67,7 @@ public class NoteController extends AbstractController<Note> {
     @PostMapping("/add/table/{tableId}")
     ResponseEntity<NoteDTO> addToTable(@RequestBody Note note, @PathVariable Long tableId) {
         GameTable foundGameTable = gameTableService.getById(tableId);
-        note.setGame_table(foundGameTable);
+        note.setGameTable(foundGameTable);
         Note noteCreated = service.add(note);
         NoteDTO noteDTO = NoteDTO.mapFromEntity(noteCreated);
         return new ResponseEntity<>(noteDTO, HttpStatus.OK);

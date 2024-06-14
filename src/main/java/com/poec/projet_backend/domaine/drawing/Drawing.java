@@ -20,5 +20,5 @@ public class Drawing {
     @ManyToOne
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("drawings")
-    private GameTable game_table;
+    private GameTable gameTable;
 }

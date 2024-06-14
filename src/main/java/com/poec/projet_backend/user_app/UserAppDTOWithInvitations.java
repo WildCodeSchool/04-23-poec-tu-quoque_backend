@@ -27,11 +27,11 @@ public record UserAppDTOWithInvitations(
                 .map(Note::getId)
                 .toList();
 
-        List<Long> gameTableIds = userApp.getGame_tables().stream()
+        List<Long> gameTableIds = userApp.getGameTables().stream()
                 .map(GameTable::getId)
                 .toList();
 
-        List<Long> tableInvitationsId = userApp.getGame_tables_invitation().stream()
+        List<Long> tableInvitationsId = userApp.getGameTablesInvitation().stream()
                 .map(GameTable::getId)
                 .toList();
 

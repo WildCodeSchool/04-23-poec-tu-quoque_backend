@@ -2,9 +2,6 @@ package com.poec.projet_backend.domaine.drawing;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
-import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
-import com.poec.projet_backend.domaine.player_character.PlayerCharacterDTO;
-import com.poec.projet_backend.user_app.UserApp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +38,7 @@ public class DrawingController extends AbstractController<Drawing> {
     @PostMapping("/add/{tableId}")
     public ResponseEntity<DrawingDTO> add(@RequestBody Drawing drawing, @PathVariable("tableId") Long tableId) {
         GameTable foundGameTable = gameTableService.getById(tableId);
-        drawing.setGame_table(foundGameTable);
+        drawing.setGameTable(foundGameTable);
         Drawing drawingCreated = service.add(drawing);
         DrawingDTO drawingDTO = DrawingDTO.mapFromEntity(drawingCreated);
         return new ResponseEntity<>(drawingDTO, HttpStatus.OK);

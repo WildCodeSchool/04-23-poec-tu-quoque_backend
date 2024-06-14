@@ -1,9 +1,6 @@
 package com.poec.projet_backend.domaine.player_character;
-import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
-import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
-import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;
 import com.poec.projet_backend.user_app.UserApp;
 import com.poec.projet_backend.user_app.UserAppService;
 import com.poec.projet_backend.util.Patcher;
@@ -45,7 +42,7 @@ public class PlayerCharacterController {
     @GetMapping("/get/character-available/userId={userId}")
     public ResponseEntity<List<PlayerCharacterDTO>> getAvailableCharacterList(@PathVariable("userId") Long userId) {
         UserApp userFound = userAppService.getById(userId);
-        List<PlayerCharacter> availableCharacterList = userFound.getPlayer_characters().stream().filter(character -> character.getGame_table() == null).toList();
+        List<PlayerCharacter> availableCharacterList = userFound.getPlayer_characters().stream().filter(character -> character.getGameTable() == null).toList();
         List<PlayerCharacterDTO> availableCharacterListDTO = availableCharacterList.stream().map(PlayerCharacterDTO::mapFromEntity).toList();
         return new ResponseEntity<>(availableCharacterListDTO, HttpStatus.OK);
     }

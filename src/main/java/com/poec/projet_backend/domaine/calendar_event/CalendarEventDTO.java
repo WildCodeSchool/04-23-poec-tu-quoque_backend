@@ -16,7 +16,7 @@ public record CalendarEventDTO(
     public static CalendarEventDTO mapFromEntity(CalendarEvent calendarEvent) {
         return new CalendarEventDTO(
                 calendarEvent.getId(),
-                calendarEvent.getGame_table().getId(),
+                calendarEvent.getGameTable().getId(),
                 calendarEvent.getTitle(),
                 calendarEvent.getStart(),
                 calendarEvent.getEnd(),

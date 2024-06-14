@@ -52,9 +52,7 @@ public class GameTable {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     @JsonIgnoreProperties("game_tables_invitation")
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties()
-    private List<UserApp> users_invitation = new ArrayList<>();
+    private List<UserApp> usersInvitation = new ArrayList<>();
 
     GameTable(String avatar, String name, UserApp user) {
         this.avatar = avatar;
@@ -68,6 +66,6 @@ public class GameTable {
     }
 
     public void addInvitation(UserApp user) {
-        this.users_invitation.add(user);
+        this.usersInvitation.add(user);
     }
 }

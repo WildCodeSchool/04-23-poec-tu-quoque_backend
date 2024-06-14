@@ -1,10 +1,7 @@
 package com.poec.projet_backend.user_app;
 
-import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableDTO;
-import com.poec.projet_backend.domaine.note.Note;
 import com.poec.projet_backend.domaine.note.NoteDTO;
-import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterDTO;
 
 import java.util.List;
@@ -30,11 +27,11 @@ public record UserAppDTO(
                 .map(NoteDTO::mapFromEntity)
                 .toList();
 
-        List<GameTableDTO> playerGameTableList = userApp.getGame_tables().stream()
+        List<GameTableDTO> playerGameTableList = userApp.getGameTables().stream()
                 .map(GameTableDTO::mapFromEntity)
                 .toList();
 
-        List<GameTableDTO> gameTableInvitationList = userApp.getGame_tables_invitation().stream()
+        List<GameTableDTO> gameTableInvitationList = userApp.getGameTablesInvitation().stream()
                 .map(GameTableDTO::mapFromEntity)
                 .toList();
 

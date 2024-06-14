@@ -23,12 +23,12 @@ public class Note {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("notes")
-    private GameTable game_table;
+    private GameTable gameTable;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "player_character_id")
     @JsonIgnoreProperties("notes")
-    private PlayerCharacter player_character;
+    private PlayerCharacter playerCharacter;
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id")

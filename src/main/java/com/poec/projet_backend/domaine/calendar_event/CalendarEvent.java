@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
@@ -29,12 +28,12 @@ public class CalendarEvent {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "player_character_id")
     @JsonIgnoreProperties("calendar_events")
-    private PlayerCharacter player_character;
+    private PlayerCharacter playerCharacter;
 
     @ManyToOne
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("calendar_events")
-    private GameTable game_table;
+    private GameTable gameTable;
 
     CalendarEvent(
             String title,
