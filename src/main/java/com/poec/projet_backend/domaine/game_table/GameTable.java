@@ -24,19 +24,19 @@ public class GameTable {
     private String name;
     private String avatar;
 
-    @OneToMany(mappedBy = "game_table")
+    @OneToMany(mappedBy = "gameTable")
     @JsonIgnoreProperties("game_table")
     private List<PlayerCharacter> playerCharacters;
 
-    @OneToMany(mappedBy = "game_table", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "gameTable", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("game_table")
     private List<Drawing> drawings;
 
-    @OneToMany(mappedBy = "game_table")
+    @OneToMany(mappedBy = "gameTable")
     @JsonIgnoreProperties("game_table")
     private List<Note> notes;
 
-    @OneToMany(mappedBy = "game_table", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "gameTable", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("game_table")
     private List<CalendarEvent> calendarEvents;
 
@@ -52,9 +52,7 @@ public class GameTable {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     @JsonIgnoreProperties("game_tables_invitation")
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JsonIgnoreProperties()
-    private List<UserApp> users_invitation = new ArrayList<>();
+    private List<UserApp> usersInvitation = new ArrayList<>();
 
     GameTable(String avatar, String name, UserApp user) {
         this.avatar = avatar;
@@ -68,6 +66,6 @@ public class GameTable {
     }
 
     public void addInvitation(UserApp user) {
-        this.users_invitation.add(user);
+        this.usersInvitation.add(user);
     }
 }

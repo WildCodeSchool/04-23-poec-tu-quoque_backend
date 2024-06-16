@@ -28,18 +28,18 @@ public class PlayerCharacter {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "game_table_id")
     @JsonIgnoreProperties("characters")
-    private GameTable game_table;
+    private GameTable gameTable;
 
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "sheet_id")
     @JsonIgnoreProperties("playerCharacter")
     private CharacterSheet characterSheet;
 
-    @OneToMany(mappedBy = "player_character")
+    @OneToMany(mappedBy = "playerCharacter")
     @JsonIgnoreProperties("player_character")
-    private List<CalendarEvent> calendar_events;
+    private List<CalendarEvent> calendarEvents;
 
-    @OneToMany(mappedBy = "player_character")
+    @OneToMany(mappedBy = "playerCharacter")
     @JsonIgnoreProperties("player_character")
     private List<Note> notes;
 

@@ -56,7 +56,7 @@ public class CharacterFixtures {
                 .name("Elric")
                 .avatar("/assets/images/user-profile-images/character-elric.jpg")
                 .user(userService.getById(3L))
-                .game_table(tableService.getById(4L))
+                .gameTable(tableService.getById(4L))
                 .accepted(false)
                 .build();
         characterService.setStartingSheet(character1);
@@ -66,7 +66,7 @@ public class CharacterFixtures {
                 .name("Gandalf")
                 .avatar("/assets/images/user-profile-images/user3.png")
                 .user(userService.getById(3L))
-                .game_table(tableService.getById(2L))
+                .gameTable(tableService.getById(2L))
                 .accepted(true)
                 .build();
         characterService.setStartingSheet(character2);
@@ -94,7 +94,7 @@ public class CharacterFixtures {
                 .name("Freyr")
                 .avatar("")
                 .user(userService.getById(5L))
-                .game_table(tableService.getById(1L))
+                .gameTable(tableService.getById(1L))
                 .accepted(true)
                 .build();
         characterService.setStartingSheet(character5);
@@ -104,7 +104,7 @@ public class CharacterFixtures {
                 .name("Néo")
                 .avatar("/assets/images/user-profile-images/user1.jpg")
                 .user(userService.getById(6L))
-                .game_table(tableService.getById(1L))
+                .gameTable(tableService.getById(1L))
                 .accepted(false)
                 .build();
         characterService.setStartingSheet(character6);

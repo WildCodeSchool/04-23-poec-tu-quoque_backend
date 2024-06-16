@@ -2,8 +2,6 @@ package com.poec.projet_backend.domaine.calendar_event;
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
 import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableService;
-import com.poec.projet_backend.domaine.note.Note;
-import com.poec.projet_backend.domaine.note.NoteDTO;
 import com.poec.projet_backend.util.Patcher;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +40,7 @@ public class CalendarEventController extends AbstractController<CalendarEvent> {
     @PostMapping("/add/{tableId}")
     public ResponseEntity<CalendarEventDTO> add(@RequestBody CalendarEvent calendarEvent, @PathVariable("tableId") Long tableId) {
         GameTable foundGameTable = gameTableService.getById(tableId);
-        calendarEvent.setGame_table(foundGameTable);
+        calendarEvent.setGameTable(foundGameTable);
         CalendarEvent eventCreated = service.add(calendarEvent);
         CalendarEventDTO calendarEventDTO = CalendarEventDTO.mapFromEntity(eventCreated);
         return new ResponseEntity<>(calendarEventDTO, HttpStatus.OK);

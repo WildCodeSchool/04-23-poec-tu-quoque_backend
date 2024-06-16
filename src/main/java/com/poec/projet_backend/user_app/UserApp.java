@@ -10,7 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -71,7 +70,7 @@ public class UserApp implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
-    private List<PlayerCharacter> player_characters;
+    private List<PlayerCharacter> playerCharacters;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
@@ -79,15 +78,8 @@ public class UserApp implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
-    private List<GameTable> game_tables;
+    private List<GameTable> gameTables;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users_invitation")
-//    @JoinTable(
-//            name = "user_table_invitations",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "game_table_id")
-//    )
-//    @ManyToMany(mappedBy = "users_invitation")
-//    @JsonIgnoreProperties("users_invitation")
-    private List<GameTable> game_tables_invitation = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usersInvitation")
+    private List<GameTable> gameTablesInvitation = new ArrayList<>();
 }
