@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CharacterSheetService extends AbstractService<CharacterSheet> {
 
-    @Autowired
-    PlayerCharacterService characterService;
+
 
     public CharacterSheetService(CharacterSheetRepository repository) {
         super(repository);
@@ -24,20 +23,5 @@ public class CharacterSheetService extends AbstractService<CharacterSheet> {
         return null;
     }
 
-    public CharacterSheetDTO update(Long id, CharacterSheetDTO sheetDTO) {
-        PlayerCharacter character = characterService.getCharacterByCharacterSheet(sheetDTO.id());
-        CharacterSheet sheet = CharacterSheetDTO.mapFromDtoToEntityWithoutCharacterPlayer(sheetDTO, character);
 
-
-        //foreach skill : verify if skill exists in db
-        //      if true -> update
-        //      else -> create
-
-        // foreach weapon : verify if weapon exists in db
-        //      if true -> update
-        //      else -> create
-        //save
-
-        return CharacterSheetDTO.mapFromEntity(sheet);
-    }
 }

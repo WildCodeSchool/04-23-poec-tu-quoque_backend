@@ -16,4 +16,14 @@ public record PurseDTO(
                 purse.isRolled()
         );
     }
+
+    public static Purse mapFromDtoToEntity(PurseDTO purseDTO) {
+        return new Purse(
+                purseDTO.id(),
+                purseDTO.goldPieces(),
+                purseDTO.silverPieces(),
+                purseDTO.copperPieces(),
+                purseDTO.rolled()
+        );
+    }
 }

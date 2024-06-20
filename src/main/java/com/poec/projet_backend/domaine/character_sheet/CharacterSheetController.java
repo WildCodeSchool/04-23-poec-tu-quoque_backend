@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 public class CharacterSheetController extends AbstractController<CharacterSheet> {
     @Autowired
     private CharacterSheetService sheetService;
+    @Autowired
+    private UpdateSheetService updateSheetService;
 
 
     @GetMapping("/get/{id}")
@@ -22,7 +24,7 @@ public class CharacterSheetController extends AbstractController<CharacterSheet>
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<CharacterSheetDTO> update(@PathVariable("id") Long id, @RequestBody CharacterSheetDTO sheetDTO) {
-        return new ResponseEntity<CharacterSheetDTO>(sheetService.update(id, sheetDTO), HttpStatus.OK);
+    public ResponseEntity<CharacterSheetDTO> update(@PathVariable("id") Long id, @RequestBody CharacterSheetDTOFromFront sheetDTO) {
+        return new ResponseEntity<>(updateSheetService.update(id, sheetDTO), HttpStatus.OK);
     }
 }
