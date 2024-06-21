@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CharacterSheetService extends AbstractService<CharacterSheet> {
-
-
-
     public CharacterSheetService(CharacterSheetRepository repository) {
         super(repository);
     }
@@ -22,6 +19,4 @@ public class CharacterSheetService extends AbstractService<CharacterSheet> {
     public CharacterSheet update(Long id, CharacterSheet entity) {
         return null;
     }
-
-
 }

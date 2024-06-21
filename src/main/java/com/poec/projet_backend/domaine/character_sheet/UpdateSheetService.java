@@ -2,12 +2,10 @@ package com.poec.projet_backend.domaine.character_sheet;
 
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatisticsService;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.Weapon;
-import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.WeaponDTO;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.WeaponService;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapons_dto_from_front.WeaponDTOFromFront;
 import com.poec.projet_backend.domaine.character_sheet.purse.PurseService;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayer;
-import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayerDTO;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayerService;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacterService;

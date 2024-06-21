@@ -72,11 +72,8 @@ public record CharacterSheetDTO(
                 .skinColor(sheetDTO.skinColor())
                 .weightModifierRolled(sheetDTO.weightModifierRolled())
                 .playerCharacter(character)
-                // weapons
                 .skillInfoEnteredByPlayerList(sheetDTO.skills().stream().map(SkillInfoEnteredByPlayerDTO::mapFromDtoToEntity).toList())
                 .stats(CharacterStatisticDTO.mapFromDtoToEntity(sheetDTO.stats, sheetDTO.statisticsId()))
-
-                //purse
                 .build();
     }
 }
