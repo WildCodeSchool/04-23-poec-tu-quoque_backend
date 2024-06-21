@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @Entity
@@ -20,12 +19,12 @@ public class Statistic {
     private Long id;
 
     private int originalValue;
-    private int tempModifier;
+    private int tempValue;
     private String abbr;
 
-    public Statistic(int originalValue, int tempModifier, String abbr) {
+    public Statistic(int originalValue, int tempValue, String abbr) {
         this.originalValue = originalValue;
-        this.tempModifier = tempModifier;
+        this.tempValue = tempValue;
         this.abbr = abbr;
     }
 

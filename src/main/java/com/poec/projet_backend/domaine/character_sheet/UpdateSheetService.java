@@ -1,5 +1,6 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
+import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatisticsService;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.Weapon;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.WeaponDTO;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.WeaponService;
@@ -34,31 +35,26 @@ public class UpdateSheetService {
     @Autowired
     private WeaponService weaponService;
 
+    @Autowired
+    private CharacterStatisticsService statisticsService;
+
     public CharacterSheetDTO update(Long id, CharacterSheetDTOFromFront sheetDTO) {
         PlayerCharacter character = characterService.getCharacterByCharacterSheet(sheetDTO.id());
         CharacterSheet sheet = CharacterSheetDTOFromFront.mapFromDtoToEntityWithoutCharacterPlayer(sheetDTO, character);
 
-        List<SkillInfoEnteredByPlayer> newSkills = new ArrayList<>();
-        for(SkillInfoEnteredByPlayer skill: sheet.getSkillInfoEnteredByPlayerList()) {
-            skill.setSheet(sheet);
-            SkillInfoEnteredByPlayer newSkill;
-            System.err.println("skill : " + skill.getSkillId() + " -> rank : " + skill.getRankSkill() );
-            if(skill.getId() == -1) {
-                newSkill =  skillService.add(skill);
-            } else {
-                newSkill = skillService.update(skill.getId(), skill);
-            }
-            newSkills.add(newSkill);
-        }
+        saveSkills(sheet);
 
-        if(sheet.getPurse().getId() == -1) {
-            purseService.add(sheet.getPurse());
-        } else {
-            purseService.update(sheet.getPurse().getId(), sheet.getPurse());
-        }
+        saveWeapons(sheetDTO, sheet);
 
-        sheet.setSkillInfoEnteredByPlayerList(newSkills);
+        savePurse(sheet);
 
+        statisticsService.update(sheet.getStats().getId(), sheet.getStats());
+
+        sheetRepository.save(sheet);
+        return CharacterSheetDTO.mapFromEntity(sheet);
+    }
+
+    private void saveWeapons(CharacterSheetDTOFromFront sheetDTO, CharacterSheet sheet) {
         List<Weapon> weapons = new ArrayList<>();
         for(WeaponDTOFromFront weaponDTO: sheetDTO.weapons()) {
             Weapon weapon = WeaponDTOFromFront.mapFromDtoToEntity(weaponDTO);
@@ -73,18 +69,32 @@ public class UpdateSheetService {
             weapons.add(weaponSaved);
         }
 
-
-
         sheet.getWeapons().setWeapons(weapons);
+    }
 
-        // foreach weapon : verify if weapon exists in db
-        //      if true -> update
-        //      else -> create
-        //save
+    private void saveSkills(CharacterSheet sheet) {
+        List<SkillInfoEnteredByPlayer> newSkills = new ArrayList<>();
+        for(SkillInfoEnteredByPlayer skill: sheet.getSkillInfoEnteredByPlayerList()) {
+            skill.setSheet(sheet);
+            SkillInfoEnteredByPlayer newSkill;
+            System.err.println("skill : " + skill.getSkillId() + " -> rank : " + skill.getRankSkill() );
+            if(skill.getId() == -1) {
+                newSkill =  skillService.add(skill);
+            } else {
+                newSkill = skillService.update(skill.getId(), skill);
+            }
+            newSkills.add(newSkill);
+        }
 
-        System.err.println("ça appelle ici");
-        sheetRepository.save(sheet);
-        return CharacterSheetDTO.mapFromEntity(sheet);
+        sheet.setSkillInfoEnteredByPlayerList(newSkills);
+    }
+
+    private void savePurse(CharacterSheet sheet) {
+        if(sheet.getPurse().getId() == -1) {
+            purseService.add(sheet.getPurse());
+        } else {
+            purseService.update(sheet.getPurse().getId(), sheet.getPurse());
+        }
     }
 }
 
