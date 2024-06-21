@@ -4,8 +4,6 @@ public record DrawingDTO(
         Long id,
         String name,
         String content
-
-
 ) {
     public static DrawingDTO mapFromEntity(Drawing drawing) {
         return new DrawingDTO(

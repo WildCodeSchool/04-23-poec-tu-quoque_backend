@@ -10,5 +10,4 @@ public record PlayerCharacterDTO(
                 playerCharacter.getName()
         );
     }
-
 }

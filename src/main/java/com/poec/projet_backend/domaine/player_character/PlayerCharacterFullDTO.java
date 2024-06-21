@@ -1,6 +1,5 @@
 package com.poec.projet_backend.domaine.player_character;
 
-import com.poec.projet_backend.domaine.game_table.GameTable;
 import com.poec.projet_backend.domaine.game_table.GameTableDTO;
 import com.poec.projet_backend.domaine.note.NoteDTO;
 
@@ -21,7 +20,7 @@ public record PlayerCharacterFullDTO(
             playerCharacter.getName(),
             playerCharacter.getAvatar(),
             playerCharacter.isAccepted(),
-            playerCharacter.getGame_table() != null ? GameTableDTO.mapFromEntity(playerCharacter.getGame_table()) : null,
+            playerCharacter.getGameTable() != null ? GameTableDTO.mapFromEntity(playerCharacter.getGameTable()) : null,
             playerCharacter.getCharacterSheet() != null ? playerCharacter.getCharacterSheet().getId() : null,
             playerCharacter.getNotes().stream().map(NoteDTO::mapFromEntity).toList()
 

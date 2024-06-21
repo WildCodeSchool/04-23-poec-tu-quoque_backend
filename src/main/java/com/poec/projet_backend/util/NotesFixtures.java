@@ -11,8 +11,6 @@ import com.poec.projet_backend.user_app.UserAppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class NotesFixtures {
 
@@ -59,7 +57,7 @@ public class NotesFixtures {
         Note note2 = Note.builder()
                 .name("mot de passe")
                 .text("Ha ha ha !!!")
-                .game_table(table2)
+                .gameTable(table2)
                 .build();
         noteService.add(note2);
 
@@ -67,7 +65,7 @@ public class NotesFixtures {
         Note note3 = Note.builder()
                 .name("pas d'inspi")
                 .text("Mur")
-                .game_table(table3)
+                .gameTable(table3)
                 .build();
         noteService.add(note3);
 
@@ -75,14 +73,14 @@ public class NotesFixtures {
         Note note4 = Note.builder()
                 .name("Météo")
                 .text("Beau temps")
-                .player_character(character4)
+                .playerCharacter(character4)
                 .build();
         noteService.add(note4);
 
         Note note5 = Note.builder()
                 .name("Secret inavouable")
                 .text("oubliés")
-                .player_character(character4)
+                .playerCharacter(character4)
                 .build();
         noteService.add(note5);
     }

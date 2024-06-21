@@ -6,7 +6,6 @@ import com.poec.projet_backend.user_app.UserApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -27,10 +26,10 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
         foundCharacter.setName(entity.getName());
         foundCharacter.setAvatar(entity.getAvatar());
         foundCharacter.setAccepted(entity.isAccepted());
-        if(entity.getGame_table() != null) {
-            foundCharacter.setGame_table(entity.getGame_table());
+        if(entity.getGameTable() != null) {
+            foundCharacter.setGameTable(entity.getGameTable());
         } else {
-            foundCharacter.setGame_table(null);
+            foundCharacter.setGameTable(null);
         }
         return repository.save(foundCharacter);
     }

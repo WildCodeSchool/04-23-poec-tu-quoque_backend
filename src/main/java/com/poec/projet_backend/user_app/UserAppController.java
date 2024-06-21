@@ -6,7 +6,6 @@ import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.util.Patcher;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,7 +50,6 @@ public class UserAppController extends AbstractController<UserApp> {
             return new ResponseEntity<>(userAppDTOList, HttpStatus.OK);
         } else {
             throw new AccessDeniedException("UserApp does not have the correct rights to access to this resource");
-
         }
     }
 
@@ -62,6 +60,14 @@ public class UserAppController extends AbstractController<UserApp> {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return ResponseEntity.ok(UserAppDTO.mapFromEntity(userApp));
+    }
+
+    @GetMapping("/get/user-invited/tableId={tableId}")
+    public ResponseEntity<List<UserAppShortDTO>> getUserInvitedList(@PathVariable("tableId") Long tableId) {
+        GameTable tableFound = tableService.getById(tableId);
+        List<UserApp> tableUserInvitedList = tableFound.getUsersInvitation();
+        List<UserAppShortDTO> tableUserInvitatedDTOList = tableUserInvitedList.stream().map(UserAppShortDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(tableUserInvitatedDTOList, HttpStatus.OK);
     }
 
     @PatchMapping("/patch/{id}")
