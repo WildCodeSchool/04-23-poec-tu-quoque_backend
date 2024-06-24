@@ -2,6 +2,7 @@ package com.poec.projet_backend.domaine.player_character;
 import com.poec.projet_backend.domaine.abstract_package.AbstractService;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheetService;
+import com.poec.projet_backend.user_app.UserApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,14 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
                 .findFirst();
 
         return characterMatch.orElseThrow().getUser().getNickname();
+    }
+
+    public PlayerCharacter getCharacterByCharacterSheet(Long sheetId) {
+        List<PlayerCharacter> characterList = getAll();
+        Optional<PlayerCharacter> characterMatch =  characterList.stream()
+                .filter(character -> Objects.equals(character.getCharacterSheet().getId(), sheetId))
+                .findFirst();
+
+        return characterMatch.orElseThrow();
     }
 }

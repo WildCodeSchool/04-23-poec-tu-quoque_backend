@@ -1,16 +1,19 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
 import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatisticDTO;
+import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeapons;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.CharacterWeaponsDTO;
+import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapons_dto_from_front.WeaponDTOFromFront;
 import com.poec.projet_backend.domaine.character_sheet.purse.PurseDTO;
 import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredByPlayerDTO;
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 
 import java.util.List;
 
-public record CharacterSheetDTO(
+public record CharacterSheetDTOFromFront(
         Long id,
         Long statisticsId,
+        Long weaponsId,
         String age,
         String alignment,
         String characterClass,
@@ -22,40 +25,15 @@ public record CharacterSheetDTO(
         String hairColor,
         String heightModifierRolled,
         String level,
-        String skinColor,
-        String weightModifierRolled,
         String playerName,
-        CharacterWeaponsDTO weapons,
+        PurseDTO purse,
         List<SkillInfoEnteredByPlayerDTO> skills,
+        String skinColor,
         CharacterStatisticDTO stats,
-        PurseDTO purse
+        List<WeaponDTOFromFront> weapons,
+        String weightModifierRolled
 ) {
-    public static CharacterSheetDTO mapFromEntity(CharacterSheet sheet) {
-        return new CharacterSheetDTO(
-                sheet.getId(),
-                sheet.getStats().getId(),
-                sheet.getAge(),
-                sheet.getAlignment(),
-                sheet.getCharacterClass(),
-                sheet.getCharacterName(),
-                sheet.getCharacterRace(),
-                sheet.getEyesColor(),
-                sheet.getGender(),
-                sheet.getGod(),
-                sheet.getHairColor(),
-                sheet.getHeightModifierRolled(),
-                sheet.getLevel(),
-                sheet.getSkinColor(),
-                sheet.getWeightModifierRolled(),
-                sheet.getPlayerCharacter().getUser().getNickname(),
-                CharacterWeaponsDTO.mapFromEntity(sheet.getWeapons()),
-                sheet.getSkillInfoEnteredByPlayerList().stream().map(SkillInfoEnteredByPlayerDTO::mapFromEntity).toList(),
-                CharacterStatisticDTO.mapFromEntity(sheet.getStats()),
-                PurseDTO.mapFromEntity(sheet.getPurse())
-        );
-    }
-
-    public static CharacterSheet mapFromDtoToEntityWithoutCharacterPlayer(CharacterSheetDTO sheetDTO, PlayerCharacter character) {
+    public static CharacterSheet mapFromDtoToEntityWithoutCharacterPlayer(CharacterSheetDTOFromFront sheetDTO, PlayerCharacter character) {
         return CharacterSheet.builder()
                 .id(sheetDTO.id())
                 .age(sheetDTO.age())
@@ -72,8 +50,12 @@ public record CharacterSheetDTO(
                 .skinColor(sheetDTO.skinColor())
                 .weightModifierRolled(sheetDTO.weightModifierRolled())
                 .playerCharacter(character)
+                .weapons(CharacterWeaponsDTO.mapFromDtoToEntity(sheetDTO.weaponsId(), sheetDTO.weapons()))
                 .skillInfoEnteredByPlayerList(sheetDTO.skills().stream().map(SkillInfoEnteredByPlayerDTO::mapFromDtoToEntity).toList())
-                .stats(CharacterStatisticDTO.mapFromDtoToEntity(sheetDTO.stats, sheetDTO.statisticsId()))
+                .stats(CharacterStatisticDTO.mapFromDtoToEntity(sheetDTO.stats(), sheetDTO.statisticsId()))
+                .purse(PurseDTO.mapFromDtoToEntity(sheetDTO.purse()))
                 .build();
     }
 }
+
+

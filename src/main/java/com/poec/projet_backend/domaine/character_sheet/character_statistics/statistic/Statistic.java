@@ -4,12 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class Statistic {
 
     @Id
@@ -17,12 +19,12 @@ public class Statistic {
     private Long id;
 
     private int originalValue;
-    private int tempModifier;
+    private int tempValue;
     private String abbr;
 
-    public Statistic(int originalValue, int tempModifier, String abbr) {
+    public Statistic(int originalValue, int tempValue, String abbr) {
         this.originalValue = originalValue;
-        this.tempModifier = tempModifier;
+        this.tempValue = tempValue;
         this.abbr = abbr;
     }
 

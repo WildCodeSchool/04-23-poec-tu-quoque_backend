@@ -1,7 +1,6 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
 import com.poec.projet_backend.domaine.abstract_package.AbstractService;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service

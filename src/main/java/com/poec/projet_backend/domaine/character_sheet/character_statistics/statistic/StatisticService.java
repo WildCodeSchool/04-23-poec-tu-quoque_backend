@@ -12,6 +12,6 @@ public class StatisticService extends AbstractService<Statistic> {
 
     @Override
     public Statistic update(Long id, Statistic entity) {
-        return null;
+        return repository.save(entity);
     }
 }
