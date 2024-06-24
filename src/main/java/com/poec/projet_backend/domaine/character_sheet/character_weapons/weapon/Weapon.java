@@ -20,6 +20,11 @@ public class Weapon {
     @JoinColumn(name = "character_weapons_id")
     private CharacterWeapons characterWeapons;
 
+    public Weapon(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Weapon(String name) {
         this.name = name;
     }

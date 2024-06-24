@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.poec.projet_backend.domaine.character_sheet.character_weapons.weapon.Weapon;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Data
 @Entity
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class CharacterWeapons {
 
     @Id

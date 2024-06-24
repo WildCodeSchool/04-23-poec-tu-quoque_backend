@@ -11,6 +11,6 @@ public class SkillInfoEnteredByPlayerService extends AbstractService<SkillInfoEn
 
     @Override
     public SkillInfoEnteredByPlayer update(Long id, SkillInfoEnteredByPlayer entity) {
-        return null;
+        return repository.save(entity);
     }
 }

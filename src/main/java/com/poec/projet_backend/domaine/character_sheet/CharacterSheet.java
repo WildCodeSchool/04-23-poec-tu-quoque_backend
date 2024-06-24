@@ -8,10 +8,7 @@ import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredBy
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @AllArgsConstructor
@@ -23,7 +20,6 @@ public class CharacterSheet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @OneToOne(mappedBy = "characterSheet")
     @JoinColumn(name = "character_id")

@@ -12,6 +12,6 @@ public class WeaponService extends AbstractService<Weapon> {
 
     @Override
     public Weapon update(Long id, Weapon entity) {
-        return null;
+        return repository.save(entity);
     }
 }
