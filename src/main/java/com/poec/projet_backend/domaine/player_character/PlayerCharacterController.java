@@ -90,6 +90,7 @@ public class PlayerCharacterController {
 
     @DeleteMapping("/delete-item/{id}")
     public ResponseEntity<Void> deleteCharacter(@PathVariable("id") Long id) {
+        System.out.println(id);
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

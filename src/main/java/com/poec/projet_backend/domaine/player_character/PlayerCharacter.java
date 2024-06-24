@@ -39,7 +39,7 @@ public class PlayerCharacter {
     @JsonIgnoreProperties("player_character")
     private List<CalendarEvent> calendarEvents;
 
-    @OneToMany(mappedBy = "playerCharacter")
+    @OneToMany(mappedBy = "playerCharacter", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("player_character")
     private List<Note> notes;
 
