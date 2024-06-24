@@ -32,8 +32,6 @@ public record CharacterStatisticDTO(
                 StatisticDTO.mapFromDtoToEntity(statsDTO.INT()),
                 StatisticDTO.mapFromDtoToEntity(statsDTO.SAG()),
                 StatisticDTO.mapFromDtoToEntity(statsDTO.CHA())
-
-
         );
     }
 }

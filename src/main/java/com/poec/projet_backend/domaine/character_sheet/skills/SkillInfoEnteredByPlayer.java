@@ -36,5 +36,4 @@ public class SkillInfoEnteredByPlayer {
         this.rankSkill = rankSkill;
         this.complement = complement;
     }
-
 }

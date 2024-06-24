@@ -1,7 +1,6 @@
 package com.poec.projet_backend.domaine.character_sheet;
 
 import com.poec.projet_backend.domaine.abstract_package.AbstractController;
-import com.poec.projet_backend.domaine.character_sheet.character_statistics.CharacterStatisticDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,6 @@ public class CharacterSheetController extends AbstractController<CharacterSheet>
     private CharacterSheetService sheetService;
     @Autowired
     private UpdateSheetService updateSheetService;
-
 
     @GetMapping("/get/{id}")
     public ResponseEntity<CharacterSheetDTO> getById(@PathVariable("id") Long id) {

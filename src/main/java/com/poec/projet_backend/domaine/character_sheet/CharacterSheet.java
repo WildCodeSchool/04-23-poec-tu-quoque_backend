@@ -8,10 +8,7 @@ import com.poec.projet_backend.domaine.character_sheet.skills.SkillInfoEnteredBy
 import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
 import java.util.List;
-
 
 @Entity
 @AllArgsConstructor
@@ -71,8 +68,4 @@ public class CharacterSheet {
         this.stats = stats;
         this.weapons = weapons;
     }
-
-
-
-
 }

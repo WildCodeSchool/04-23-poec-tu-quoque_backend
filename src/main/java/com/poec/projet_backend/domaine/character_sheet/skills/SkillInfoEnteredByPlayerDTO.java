@@ -16,7 +16,6 @@ public record SkillInfoEnteredByPlayerDTO(
     }
 
     public static SkillInfoEnteredByPlayer mapFromDtoToEntity(SkillInfoEnteredByPlayerDTO skillDTO) {
-        System.err.println(skillDTO.id() + " -> " + skillDTO.rank());
         return SkillInfoEnteredByPlayer.builder()
                 .rankSkill(skillDTO.rank())
                 .complement(skillDTO.complement())
