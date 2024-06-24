@@ -50,7 +50,7 @@ public class UserFixtures {
          );
 
         UserAppInitializerDTO user3 = new UserAppInitializerDTO(
-                "SkyIsTheLimit",
+                "Kazurita",
                 "SkyIsTheLimit@gmail.com",
                 "Bonjour33!",
                 "/assets/images/user-profile-images/user1.jpg"
