@@ -27,7 +27,7 @@ public class TableFixtures {
         List<GameTable> tableList = new ArrayList<>();
         GameTable table1 = GameTable.builder()
                 .avatar("/assets/images/table-profile-images/le-bois-de-la-misericorde.jpg")
-                .name("le bois de la miséricorde")
+                .name("Le bois de la miséricorde")
                 .user(userService.getById(3L))
                 .build();
         tableList.add(table1);
@@ -41,7 +41,7 @@ public class TableFixtures {
 
         GameTable table3 = GameTable.builder()
                 .avatar("/assets/images/table-profile-images/le-donjon-des-monts-venteux.jpg")
-                .name("le donjon des monts venteux")
+                .name("Le donjon des monts venteux")
                 .user(userService.getById(3L))
                 .build();
         tableList.add(table3);
