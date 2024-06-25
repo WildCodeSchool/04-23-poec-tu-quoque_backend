@@ -101,7 +101,7 @@ public class CharacterFixtures {
         characterList.add(character5);
 
         PlayerCharacter character6 = PlayerCharacter.builder()
-                .name("Néo")
+                .name("Anairë")
                 .avatar("/assets/images/user-profile-images/user1.jpg")
                 .user(userService.getById(6L))
                 .gameTable(tableService.getById(1L))
