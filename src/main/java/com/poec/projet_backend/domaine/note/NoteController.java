@@ -46,6 +46,22 @@ public class NoteController extends AbstractController<Note> {
         return new ResponseEntity<>(noteDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/get/note/characterId={characterId}")
+    public ResponseEntity<List<NoteDTO>> getByCharacter(@PathVariable("characterId") Long characterId) {
+        PlayerCharacter characterFound = playerCharacterService.getById(characterId);
+        List<Note> characterNoteList = characterFound.getNotes();
+        List<NoteDTO> characterNoteDTOList = characterNoteList.stream().map(NoteDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(characterNoteDTOList, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/note/tableId={tableId}")
+    public ResponseEntity<List<NoteDTO>> getByTable(@PathVariable("tableId") Long tableId) {
+        GameTable tableFound = gameTableService.getById(tableId);
+        List<Note> tableNoteList = tableFound.getNotes();
+        List<NoteDTO> tableNoteDTOList = tableNoteList.stream().map(NoteDTO::mapFromEntity).toList();
+        return new ResponseEntity<>(tableNoteDTOList, HttpStatus.OK);
+    }
+
     @PostMapping("/add/user/{userId}")
     ResponseEntity<NoteDTO> addToUser(@RequestBody Note note, @PathVariable Long userId) {
         UserApp foundUser = userAppService.getById(userId);

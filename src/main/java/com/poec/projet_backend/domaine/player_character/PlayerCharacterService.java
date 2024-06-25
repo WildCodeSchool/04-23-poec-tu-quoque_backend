@@ -2,6 +2,8 @@ package com.poec.projet_backend.domaine.player_character;
 import com.poec.projet_backend.domaine.abstract_package.AbstractService;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheet;
 import com.poec.projet_backend.domaine.character_sheet.CharacterSheetService;
+import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.game_table.GameTableService;
 import com.poec.projet_backend.user_app.UserApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,9 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
 
     @Autowired
     private CharacterSheetService sheetService;
+
+    @Autowired
+    private GameTableService gameTableService;
 
     public PlayerCharacterService(PlayerCharacterRepository repository) {
         super(repository);
@@ -40,6 +45,13 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
         sheetService.add(sheet);
         entity.setCharacterSheet(sheet);
         return entity;
+    }
+
+    public PlayerCharacter assignCharacterTable(Long characterId, Long tableId) {
+        GameTable foundGameTable = gameTableService.getById(tableId);
+        PlayerCharacter foundPlayerCharacter = getById(characterId);
+        foundPlayerCharacter.setGameTable(foundGameTable);
+        return repository.save(foundPlayerCharacter);
     }
 
     public String getUserNameByCharacterSheet(Long sheetId) {

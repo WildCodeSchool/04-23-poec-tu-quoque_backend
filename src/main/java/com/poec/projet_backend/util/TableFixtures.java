@@ -54,7 +54,7 @@ public class TableFixtures {
         tableList.add(table4);
 
         GameTable table5 = GameTable.builder()
-                .name("Les ajustables")
+                .name("La marche de l'Ouest")
                 .user(userService.getById(3L))
                 .build();
         tableList.add(table5);

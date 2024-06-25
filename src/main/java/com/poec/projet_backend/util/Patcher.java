@@ -1,5 +1,6 @@
 package com.poec.projet_backend.util;
 
+import com.poec.projet_backend.domaine.abstract_package.AbstractService;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;

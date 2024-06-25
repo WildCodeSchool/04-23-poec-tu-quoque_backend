@@ -82,6 +82,13 @@ public class PlayerCharacterController {
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
     }
 
+    @PostMapping("/assign-table/characterId={characterId}/tableId={tableId}")
+    public ResponseEntity<PlayerCharacterFullDTO> assignTable(@PathVariable("characterId") Long characterId, @PathVariable("tableId") Long tableId) {
+        PlayerCharacter modifiedCharacter = service.assignCharacterTable(characterId, tableId);
+        PlayerCharacterFullDTO characterFullDTO = PlayerCharacterFullDTO.mapFromEntity(modifiedCharacter);
+        return new ResponseEntity<>(characterFullDTO, HttpStatus.OK);
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<PlayerCharacterFullDTO> update(@RequestBody PlayerCharacter playerCharacter, @PathVariable Long id) {
         PlayerCharacter updatedCharacter = service.update(id, playerCharacter);

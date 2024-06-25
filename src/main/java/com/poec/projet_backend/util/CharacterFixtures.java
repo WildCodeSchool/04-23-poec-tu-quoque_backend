@@ -57,7 +57,7 @@ public class CharacterFixtures {
                 .avatar("/assets/images/user-profile-images/character-elric.jpg")
                 .user(userService.getById(3L))
                 .gameTable(tableService.getById(4L))
-                .accepted(false)
+                .accepted(true)
                 .build();
         characterService.setStartingSheet(character1);
         characterList.add(character1);
