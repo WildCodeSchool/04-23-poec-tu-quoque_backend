@@ -41,6 +41,7 @@ public class PlayerCharacterService extends AbstractService<PlayerCharacter> {
 
     public PlayerCharacter setStartingSheet(PlayerCharacter entity) {
         CharacterSheet sheet = CharacterSheet.createBlank();
+        sheet.setCharacterName(entity.getName());
         sheetService.add(sheet);
         entity.setCharacterSheet(sheet);
         return entity;

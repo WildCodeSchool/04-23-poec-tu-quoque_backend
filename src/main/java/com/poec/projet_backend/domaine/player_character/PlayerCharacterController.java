@@ -77,6 +77,7 @@ public class PlayerCharacterController {
         UserApp foundUser = userAppService.getById(userId);
         playerCharacter.setUser(foundUser);
         PlayerCharacter characterCreated = service.add(playerCharacter);
+        service.setStartingSheet(characterCreated);
         PlayerCharacterDTO characterDTO = PlayerCharacterDTO.mapFromEntity(characterCreated);
         return new ResponseEntity<>(characterDTO, HttpStatus.OK);
     }
