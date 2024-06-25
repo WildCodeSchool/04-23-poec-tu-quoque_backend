@@ -60,6 +60,7 @@ public class ApplicationConfig {
     }
 
 
+
     // On en aura besoin pour l'authentification
     // L'AuthManager est le conteneur qui gère les AuthProviders
     @Bean

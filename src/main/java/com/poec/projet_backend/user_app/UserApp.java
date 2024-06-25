@@ -1,6 +1,10 @@
 package com.poec.projet_backend.user_app;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.poec.projet_backend.domaine.game_table.GameTable;
+import com.poec.projet_backend.domaine.note.Note;
+import com.poec.projet_backend.domaine.player_character.PlayerCharacter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,9 +29,10 @@ public class UserApp implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String nickname;
     private String email;
+    private String avatar;
+
     @JsonIgnore
     private String password;
 
@@ -61,4 +67,19 @@ public class UserApp implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<PlayerCharacter> playerCharacters;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private List<Note> notes;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<GameTable> gameTables;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usersInvitation")
+    private List<GameTable> gameTablesInvitation = new ArrayList<>();
 }
